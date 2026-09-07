@@ -76,9 +76,18 @@ jobs:
         run: |
           chmod +x ./Cura-workflows/runner_scripts/appimage_setup.sh
           ./Cura-workflows/runner_scripts/appimage_setup.sh
-
-      - name: Configure GPG Key
-        run: echo -n "${{ secrets.GPG_PRIVATE_KEY }}" | base64 --decode | gpg --import
+      - name: Import GPG key
+        env:
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+        run: |
+          echo -n "$GPG_PRIVATE_KEY" \
+            | base64 --decode \
+            | gpg --batch \
+                  --yes \
+                  --pinentry-mode loopback \
+                  --passphrase "$GPG_PASSPHRASE" \
+                  --import
 
       - name: Gather/build the packages
         run: conan install --requires "${{ inputs.cura_conan_version != '' && inputs.cura_conan_version || format('cura/{0}@ultimaker/testing', steps.setup-environment.outputs.package_version) }}" ${{ inputs.conan_args }} --build=missing --update -of cura_inst --deployer-package="*" --profile ${{ steps.set-overrides.outputs.profile }} -c user.sentry:token="${{ secrets.CURAENGINE_SENTRY_TOKEN }}" ${{ inputs.enterprise && '-o "cura/*:enterprise=True"' || '' }} ${{ inputs.staging && '-o "cura/*:staging=True"' || '' }} ${{ inputs.private_data && '-o "cura/*:internal=True"' || '' }}

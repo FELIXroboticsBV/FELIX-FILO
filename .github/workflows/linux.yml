@@ -37,7 +37,7 @@ on:
           - self-hosted-Ubuntu24-X64
 
 jobs:
-  debug-check:
+  are-secretes-present:
     runs-on: ubuntu-latest
     steps:
       - name: Debug - Check if secret exists
@@ -50,7 +50,7 @@ jobs:
           fi
 
   linux-installer:
-    needs: debug-check
+    needs: are-secretes-present
     uses: ./.github/workflows/cura-installer-local.yml
     with:
       cura_conan_version: ${{ inputs.cura_conan_version }}

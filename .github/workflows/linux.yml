@@ -51,7 +51,7 @@ jobs:
 
   linux-installer:
     needs: debug-check
-    uses: ultimaker/cura-workflows/.github/workflows/cura-installer-linux.yml@main
+    uses: ./.github/workflows/cura-installer-local.yml
     with:
       cura_conan_version: ${{ inputs.cura_conan_version }}
       package_overrides: ${{ inputs.package_overrides }}
@@ -59,5 +59,4 @@ jobs:
       enterprise: ${{ inputs.enterprise }}
       staging: ${{ inputs.staging }}
       operating_system: ${{ inputs.operating_system }}
-    secrets:
-      GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+    secrets: inherit

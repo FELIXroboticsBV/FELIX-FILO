@@ -59,4 +59,5 @@ jobs:
       enterprise: ${{ inputs.enterprise }}
       staging: ${{ inputs.staging }}
       operating_system: ${{ inputs.operating_system }}
-    secrets: inherit
+    secrets:
+      ${{ secrets.GPG_PRIVATE_KEY }}

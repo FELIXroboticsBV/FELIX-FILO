@@ -24,12 +24,12 @@ required_conan_version = ">=2.7.0" # When changing the version, also change the 
 
 
 class CuraConan(ConanFile):
-    name = "cura"
+    name = "FELIX Filo"
     license = "LGPL-3.0"
-    author = "UltiMaker"
-    url = "https://github.com/Ultimaker/cura"
+    author = "FELIX Robotics"
+    url = "https://github.com/FELIXroboticsBV/FELIX-FILO"
     description = "3D printer / slicing GUI built on top of the Uranium framework"
-    topics = ("conan", "python", "pyqt6", "qt", "qml", "3d-printing", "slicer")
+    topics = ("python", "pyqt6", "qt", "qml", "3d-printing", "slicer")
     build_policy = "missing"
     exports = "LICENSE*", "*.jinja"
     settings = "os", "compiler", "build_type", "arch"
@@ -53,11 +53,11 @@ class CuraConan(ConanFile):
         "enterprise": False,
         "staging": False,
         "cloud_api_version": "1",
-        "display_name": "UltiMaker Cura",
+        "display_name": "FELIX Filo",
         "cura_debug_mode": False,  # Not yet implemented
         "internal": False,
         "i18n_extract": False,
-        "skip_licenses_download": False,
+        "skip_licenses_download": True,
     }
 
     def set_version(self):

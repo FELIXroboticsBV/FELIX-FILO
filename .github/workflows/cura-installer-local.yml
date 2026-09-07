@@ -65,6 +65,14 @@ jobs:
           repository_path: _cura_sources # we don't want the actual sources to interfere with the built conan package
           cura_workflows_branch: main
 
+      - name: Install FELIX Conan config
+        run: |
+          conan config install https://github.com/FELIXroboticsBV/conan-config.git
+
+      - name: Verify FELIX Conan profile
+        run: |
+          grep -n "sentry" ~/.conan2/profiles/installer.jinja || true
+
       - name: Set packages overrides
         id: set-overrides
         uses: ultimaker/cura-workflows/.github/actions/set-package-overrides@main
@@ -90,7 +98,7 @@ jobs:
                   --import
 
       - name: Gather/build the packages
-        run: conan install --requires "${{ inputs.cura_conan_version != '' && inputs.cura_conan_version || format('cura/{0}@ultimaker/testing', steps.setup-environment.outputs.package_version) }}" ${{ inputs.conan_args }} --build=missing --update -of cura_inst --deployer-package="*" --profile ${{ steps.set-overrides.outputs.profile }} -c user.sentry:token="${{ secrets.CURAENGINE_SENTRY_TOKEN }}" ${{ inputs.enterprise && '-o "cura/*:enterprise=True"' || '' }} ${{ inputs.staging && '-o "cura/*:staging=True"' || '' }} ${{ inputs.private_data && '-o "cura/*:internal=True"' || '' }}
+        run: conan install -verror --requires "${{ inputs.cura_conan_version != '' && inputs.cura_conan_version || format('cura/{0}@ultimaker/testing', steps.setup-environment.outputs.package_version) }}" ${{ inputs.conan_args }} --build=missing --update -of cura_inst --deployer-package="*" --profile ${{ steps.set-overrides.outputs.profile }} -c user.sentry:token="${{ secrets.CURAENGINE_SENTRY_TOKEN }}" ${{ inputs.enterprise && '-o "cura/*:enterprise=True"' || '' }} ${{ inputs.staging && '-o "cura/*:staging=True"' || '' }} ${{ inputs.private_data && '-o "cura/*:internal=True"' || '' }}
 
       - name: Create the Cura distribution with pyinstaller
         id: prepare-distribution

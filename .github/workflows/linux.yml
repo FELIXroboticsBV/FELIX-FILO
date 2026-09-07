@@ -37,7 +37,20 @@ on:
           - self-hosted-Ubuntu24-X64
 
 jobs:
+  debug-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Debug - Check if secret exists
+        run: |
+          if [ -z "${{ secrets.GPG_PRIVATE_KEY }}" ]; then
+            echo "ERROR: GPG_PRIVATE_KEY secret is empty or not set!"
+            exit 1
+          else
+            echo "SUCCESS: Secret is set (value masked in logs)"
+          fi
+
   linux-installer:
+    needs: debug-check
     uses: ultimaker/cura-workflows/.github/workflows/cura-installer-linux.yml@main
     with:
       cura_conan_version: ${{ inputs.cura_conan_version }}

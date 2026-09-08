@@ -98,7 +98,7 @@ jobs:
                   --import
 
       - name: Gather/build the packages
-        run: conan install -verror --requires "${{ inputs.cura_conan_version != '' && inputs.cura_conan_version || format('cura/{0}@ultimaker/testing', steps.setup-environment.outputs.package_version) }}" ${{ inputs.conan_args }} --build=missing --update -of cura_inst --deployer-package="*" --profile ${{ steps.set-overrides.outputs.profile }} ${{ inputs.enterprise && '-o "cura/*:enterprise=True"' || '' }} ${{ inputs.staging && '-o "cura/*:staging=True"' || '' }} ${{ inputs.private_data && '-o "cura/*:internal=True"' || '' }}
+        run: conan install -verror --requires "${{ inputs.cura_conan_version != '' && inputs.cura_conan_version || format('cura/{0}@ultimaker/testing', steps.setup-environment.outputs.package_version) }}" ${{ inputs.conan_args }} --build=missing --update -of cura_inst --deployer-package="*" --profile ${{ steps.set-overrides.outputs.profile }} ${{ inputs.enterprise && '-o "cura/*:enterprise=True"' || '' }} ${{ inputs.staging && '-o "cura/*:staging=True"' || '' }} ${{ inputs.private_data && '-o "cura/*:internal=True"' || '' }} -o "cura/*:skip_licenses_download=True"
 
       - name: Create the Cura distribution with pyinstaller
         id: prepare-distribution

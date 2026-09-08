@@ -48,14 +48,6 @@ on:
 permissions:
   contents: read
 
-env:
-  #WIN_CERT_INSTALLER_CER: ${{ secrets.WIN_CERT_INSTALLER_CER }}
-  #WIN_CERT_INSTALLER_CER_PASS: ${{ secrets.WIN_CERT_INSTALLER_CER_PASS }}
-  #SENTRY_TOKEN: ${{ secrets.CURAENGINE_SENTRY_TOKEN }}
-  # win-cert-installer is probably not nescesary at all: went out the moment we started using signkey again on our own runner
-  # sentry debug symbols seem to only be uploaded for linux?
-
-
 # NOTE: Windows needs bash on Path, so we can use it in the (build env setup) scripts -- you should be able to use the bash that comes in the git/../bin folder.
 
 

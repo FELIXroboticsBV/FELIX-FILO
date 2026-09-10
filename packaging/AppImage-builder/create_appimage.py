@@ -47,7 +47,7 @@ def generate_appimage_builder_config(dist_path, version, appimage_filename):
 
     template = Template(appimage_builder)
     appimage_builder = template.render(app_dir = "./AppDir",
-                                       icon = "cura-icon.png",
+                                       icon = "felix-filo-icon.svg",
                                        version = version,
                                        arch = "x86_64",
                                        file_name = appimage_filename)
@@ -61,11 +61,11 @@ def copy_files(dist_path):
     Copy metadata files for the metadata of the AppImage.
     """
     copied_files = {
-        os.path.join("..", "icons", "cura-icon.svg"): os.path.join("usr", "share", "icons", "hicolor", "scalable", "apps", "cura-icon.svg"),
-        os.path.join("..", "icons", "cura-icon_64x64.png"): os.path.join("usr", "share", "icons", "hicolor", "64x64", "apps", "cura-icon.png"),
-        os.path.join("..", "icons", "cura-icon_128x128.png"): os.path.join("usr", "share", "icons", "hicolor", "128x128", "apps", "cura-icon.png"),
-        os.path.join("..", "icons", "cura-icon_256x256.png"): os.path.join("usr", "share", "icons", "hicolor", "256x256", "apps", "cura-icon.png"),
-        os.path.join("..", "icons", "cura-icon_256x256.png"): "cura-icon.png",
+        os.path.join("..", "icons", "felix-filo-icon-256-256.svg"): os.path.join("usr", "share", "icons", "hicolor", "scalable", "apps", "felix-filo-icon.svg"),
+        os.path.join("..", "icons", "felix-filo-icon-64x64.png"): os.path.join("usr", "share", "icons", "hicolor", "64x64", "apps", "felix-filo-icon.pngy"),
+        os.path.join("..", "icons", "felix-filo-icon-128x128.png"): os.path.join("usr", "share", "icons", "hicolor", "128x128", "apps", "felix-filo-icon.png"),
+        os.path.join("..", "icons", "felix-filo-icon-128-128.ico"): os.path.join("usr", "share", "icons", "hicolor", "256x256", "apps", "felix-filo-icon.png"),
+        os.path.join("..", "icons", "felix-filo-icon-256-256.ico"): "felix-filo-icon.png",
     }
 
     # TODO: openssl.cnf ???
@@ -85,16 +85,29 @@ def create_appimage():
         raise RuntimeError(f"The AppImageTool command returned non-zero: {result}")
 
 
-def sign_appimage(appimage_filename):
-    command = ["gpg", "--yes", "--armor", "--detach-sig", appimage_filename]
+    passphrase = os.environ["GPG_PASSPHRASE"]
+
+    command = [
+        "gpg",
+        "--batch",
+        "--yes",
+        "--pinentry-mode",
+        "loopback",
+        "--passphrase",
+        passphrase,
+        "--armor",
+        "--detach-sig",
+        appimage_filename,
+    ]
+
     result = subprocess.call(command)
+
     if result != 0:
         raise RuntimeError(f"The GPG command returned non-zero: {result}")
 
-
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description = "Create AppImages of Cura.")
-    parser.add_argument("dist_path", type = str, help = "Path to where PyInstaller installed the distribution of Cura.")
+    parser = argparse.ArgumentParser(description = "Create AppImages of FELIX-Filo.")
+    parser.add_argument("dist_path", type = str, help = "Path to where PyInstaller installed the distribution of FELIX Filo.")
     parser.add_argument("version", type = str, help = "Full version number of Cura (e.g. '5.1.0-beta')")
     parser.add_argument("filename", type = str, help = "Filename of the AppImage (e.g. 'UltiMaker-Cura-5.1.0-beta-Linux-X64.AppImage')")
     args = parser.parse_args()

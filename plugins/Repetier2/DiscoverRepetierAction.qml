@@ -237,7 +237,8 @@ Cura.MachineAction
                     visible: base.selectedInstance != null
                     width: parent.width
                     wrapMode: Text.WordWrap
-                    text: base.selectedInstance ? base.selectedInstance.name : ""
+                   // text: base.selectedInstance ? base.selectedInstance.name : ""
+                    text: Cura.ContainerManager.getContainerMetaDataEntry(Cura.MachineManager.activeMachine.id, "repetier_id")
                     font: UM.Theme.getFont("large_bold")
                     elide: Text.ElideRight
                 }
@@ -282,7 +283,7 @@ Cura.MachineAction
                     {
                         id: lblRepID
                         width: Math.floor(parent.width * 0.2)    
-                        text: base.selectedInstance ? Cura.ContainerManager.getContainerMetaDataEntry(base.selectedInstance.name, "repetier_id") : ""
+                        text: base.selectedInstance ? Cura.ContainerManager.getContainerMetaDataEntry(Cura.MachineManager.activeMachine.id, "repetier_id") : ""
                     }                    
                     UM.Label
                     {
@@ -308,7 +309,7 @@ Cura.MachineAction
                         {
                             if(base.selectedInstance != null)
                             {
-                                lblRepID.text = Cura.ContainerManager.getContainerMetaDataEntry(base.selectedInstance.name, "repetier_id")
+                                lblRepID.text = Cura.ContainerManager.getContainerMetaDataEntry(Cura.MachineManager.activeMachine.id, "repetier_id")
                                 apiKey.text = Cura.ContainerManager.getContainerMetaDataEntry(base.selectedInstance.name, "repetier_api_key")
                                 //apiKey.text = manager.getApiKey(base.selectedInstance.getId())
                             }

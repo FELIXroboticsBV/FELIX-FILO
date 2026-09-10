@@ -5,39 +5,39 @@ on:
   workflow_call:
     inputs:
       cura_conan_version:
-        description: 'Cura Conan Version'
-        default: ''
+        description: "Cura Conan Version"
+        default: ""
         required: false
         type: string
 
       package_overrides:
-        description: 'List of specific packages to be used (space-separated)'
-        default: ''
+        description: "List of specific packages to be used (space-separated)"
+        default: ""
         required: false
         type: string
 
       conan_args:
-        description: 'Conan args'
-        default: ''
+        description: "Conan args"
+        default: ""
         required: false
         type: string
 
       enterprise:
-        description: 'Build Cura as an Enterprise edition'
+        description: "Build Cura as an Enterprise edition"
         default: false
         required: true
         type: boolean
 
       staging:
-        description: 'Use staging API'
+        description: "Use staging API"
         default: false
         required: true
         type: boolean
 
       operating_system:
-        description: 'OS'
+        description: "OS"
         required: true
-        default: 'windows-2022'
+        default: "windows-2022"
         type: string
 
       private_data:
@@ -49,7 +49,6 @@ permissions:
   contents: read
 
 # NOTE: Windows needs bash on Path, so we can use it in the (build env setup) scripts -- you should be able to use the bash that comes in the git/../bin folder.
-
 
 jobs:
   cura-installer-create:
@@ -78,33 +77,33 @@ jobs:
 
       - name: Gather/build the packages
         run: |
-            $pydir = type pydir.txt
-            $env:PATH += ";$pydir;$pydir/Scripts"
-            conan install -verr --requires "${{ inputs.cura_conan_version != '' && inputs.cura_conan_version || format('cura/{0}@ultimaker/testing', steps.setup-environment.outputs.package_version) }}" ${{ inputs.conan_args }} --build=missing --update -of cura_inst --deployer-package="*" --profile ${{ steps.set-overrides.outputs.profile }}  ${{ inputs.enterprise && '-o "cura/*:enterprise=True"' || '' }} ${{ inputs.staging && '-o "cura/*:staging=True"' || '' }} ${{ inputs.private_data && '-o "cura/*:internal=True"' || '' }}
+          $pydir = type pydir.txt
+          $env:PATH += ";$pydir;$pydir/Scripts"
+          conan install -verr --requires "${{ inputs.cura_conan_version != '' && inputs.cura_conan_version || format('cura/{0}@ultimaker/testing', steps.setup-environment.outputs.package_version) }}" ${{ inputs.conan_args }} --build=missing --update -of cura_inst --deployer-package="*" --profile ${{ steps.set-overrides.outputs.profile }}  ${{ inputs.enterprise && '-o "cura/*:enterprise=True"' || '' }} ${{ inputs.staging && '-o "cura/*:staging=True"' || '' }} ${{ inputs.private_data && '-o "cura/*:internal=True"' || '' }}
 
       - name: Create the Cura distribution with pyinstaller
         id: prepare-distribution
         shell: cmd
         run: |
-            call cura_inst\conanrun.bat
+          call cura_inst\conanrun.bat
 
-            python -m venv cura_installer_venv
-            call cura_installer_venv\Scripts\Activate.bat
+          python -m venv cura_installer_venv
+          call cura_installer_venv\Scripts\Activate.bat
 
-            python -m pip install -r cura_inst\packaging\pip_requirements_core_basic.txt --no-warn-script-location
-            python -m pip install -r cura_inst\packaging\pip_requirements_core_hashes.txt --no-warn-script-location
-            python -m pip install -r cura_inst\packaging\pip_requirements_installer_basic.txt --no-warn-script-location
+          python -m pip install -r cura_inst\packaging\pip_requirements_core_basic.txt --no-warn-script-location
+          python -m pip install -r cura_inst\packaging\pip_requirements_core_hashes.txt --no-warn-script-location
+          python -m pip install -r cura_inst\packaging\pip_requirements_installer_basic.txt --no-warn-script-location
 
-            python Cura-workflows\runner_scripts\prepare_installer.py --os ${{ runner.os }} --architecture X64 ${{ inputs.enterprise && '--enterprise' || '' }} ${{ inputs.private_data && '--internal' || '' }} --summary-output %GITHUB_STEP_SUMMARY% --variables-output %GITHUB_OUTPUT%
+          python Cura-workflows\runner_scripts\prepare_installer.py --os ${{ runner.os }} --architecture X64 ${{ inputs.enterprise && '--enterprise' || '' }} ${{ inputs.private_data && '--internal' || '' }} --summary-output %GITHUB_STEP_SUMMARY% --variables-output %GITHUB_OUTPUT%
 
-            pyinstaller cura_inst\UltiMaker-Cura.spec
+          pyinstaller cura_inst\UltiMaker-Cura.spec
 
-      - name: Sign the internal executables
-        working-directory: dist/UltiMaker-Cura
-        run: |
-          & signtool sign /v /fd sha256 /tr http://timestamp.sectigo.com /td sha256 /f C:\actions-runner\code_sign.cer /csp "eToken Base Cryptographic Provider" /kc ${{ secrets.WIN_TOKEN_CONTAINER }} "CuraEngine.exe"
-          & signtool sign /v /fd sha256 /tr http://timestamp.sectigo.com /td sha256 /f C:\actions-runner\code_sign.cer /csp "eToken Base Cryptographic Provider" /kc ${{ secrets.WIN_TOKEN_CONTAINER }} "UltiMaker-Cura.exe"
-        timeout-minutes: 2
+      # - name: Sign the internal executables
+      #   working-directory: dist/UltiMaker-Cura
+      #   run: |
+      #     & signtool sign /v /fd sha256 /tr http://timestamp.sectigo.com /td sha256 /f C:\actions-runner\code_sign.cer /csp "eToken Base Cryptographic Provider" /kc ${{ secrets.WIN_TOKEN_CONTAINER }} "CuraEngine.exe"
+      #     & signtool sign /v /fd sha256 /tr http://timestamp.sectigo.com /td sha256 /f C:\actions-runner\code_sign.cer /csp "eToken Base Cryptographic Provider" /kc ${{ secrets.WIN_TOKEN_CONTAINER }} "UltiMaker-Cura.exe"
+      #   timeout-minutes: 2
 
       - name: Workaround (need exact version of msvc redistributables)
         if: ${{ always() }}
@@ -197,6 +196,6 @@ jobs:
       - name: Clean local cache
         if: ${{ always() && startsWith(inputs.operating_system, 'self-hosted') }}
         run: |
-            $pydir = type pydir.txt
-            $env:PATH += ";$pydir;$pydir/Scripts"
-            conan remove '*' --lru=1w -c
+          $pydir = type pydir.txt
+          $env:PATH += ";$pydir;$pydir/Scripts"
+          conan remove '*' --lru=1w -c

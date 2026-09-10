@@ -98,26 +98,26 @@ jobs:
                   --import
 
       - name: Gather/build the packages
-        run: conan install -verror --requires "${{ inputs.cura_conan_version != '' && inputs.cura_conan_version || format('cura/{0}@ultimaker/testing', steps.setup-environment.outputs.package_version) }}" ${{ inputs.conan_args }} --build=missing --update -of cura_inst --deployer-package="*" --profile ${{ steps.set-overrides.outputs.profile }} ${{ inputs.enterprise && '-o "cura/*:enterprise=True"' || '' }} ${{ inputs.staging && '-o "cura/*:staging=True"' || '' }} ${{ inputs.private_data && '-o "cura/*:internal=True"' || '' }} -o "cura/*:skip_licenses_download=True"
+        run: conan install -verror --requires "${{ inputs.cura_conan_version != '' && inputs.cura_conan_version || format('cura/{0}@ultimaker/testing', steps.setup-environment.outputs.package_version) }}" ${{ inputs.conan_args }} --build=missing --update -of FELIX-Filo --deployer-package="*" --profile ${{ steps.set-overrides.outputs.profile }} ${{ inputs.enterprise && '-o "cura/*:enterprise=True"' || '' }} ${{ inputs.staging && '-o "cura/*:staging=True"' || '' }} ${{ inputs.private_data && '-o "cura/*:internal=True"' || '' }} -o "cura/*:skip_licenses_download=True"
 
       - name: Create the Cura distribution with pyinstaller
         id: prepare-distribution
         run: |
-          source cura_inst/conanrun.sh
-          python -m venv cura_installer_venv
-          source cura_installer_venv/bin/activate
-          ls cura_inst/packaging/pip_requirements_{core,installer}_*.txt | xargs -I {} pip install -r {}
+          source FELIX-Filo/conanrun.sh
+          python -m venv FELIX-Filoaller_venv
+          source FELIX-Filoaller_venv/bin/activate
+          ls FELIX-Filo/packaging/pip_requirements_{core,installer}_*.txt | xargs -I {} pip install -r {}
 
           python Cura-workflows/runner_scripts/prepare_installer.py --os ${{ runner.os }} --architecture X64 ${{ inputs.enterprise && '--enterprise' || '' }} ${{ inputs.private_data && '--internal' || '' }} --summary-output "$GITHUB_STEP_SUMMARY" --variables-output "$GITHUB_OUTPUT"
 
-          pyinstaller ./cura_inst/UltiMaker-Cura.spec
+          pyinstaller ./FELIX-Filo/UltiMaker-Cura.spec
 
       - name: Remove unused packages in blacklist from "Cura/conandata.yml"
         run: python Cura-workflows/runner_scripts/cleanup_distribution.py dist/UltiMaker-Cura --conandata _cura_sources/conandata.yml --os Linux
 
       - name: Create the Linux AppImage (Bash)
         run: |
-          python ../cura_inst/packaging/AppImage-builder/create_appimage.py ./FELIX-Filo "${{ steps.prepare-distribution.outputs.CURA_VERSION_FULL }}" "${{ steps.prepare-distribution.outputs.INSTALLER_FILENAME }}.AppImage"
+          python ../FELIX-Filo/packaging/AppImage-builder/create_appimage.py ./FELIX-Filo "${{ steps.prepare-distribution.outputs.CURA_VERSION_FULL }}" "${{ steps.prepare-distribution.outputs.INSTALLER_FILENAME }}.AppImage"
           chmod +x "${{ steps.prepare-distribution.outputs.INSTALLER_FILENAME }}.AppImage"
         working-directory: dist
 

@@ -116,19 +116,7 @@
                                 base.selectedInstance.getProperty("useHttps") == "true",
                                 base.selectedInstance.getProperty("userName"),
                                 base.selectedInstance.getProperty("password"),
-                                Cura.ContainerManager.getContainerMetaDataEntry(base.selectedInstance.name, "repetier_id")
-                            );
-                            }
-                        else
-                            {
-                            manualPrinterDialog.showDialog(
-                                base.selectedInstance.name, base.selectedInstance.ipAddress,
-                                base.selectedInstance.port, base.selectedInstance.path,
-                                base.selectedInstance.getProperty("useHttps") == "true",
-                                base.selectedInstance.getProperty("userName"),
-                                base.selectedInstance.getProperty("password"),
-                                ""
-                            );
+                                manager.instanceId)
                             }
                     }
                 }
@@ -644,7 +632,7 @@
                                 {
                                     manager.applyGcodeFlavorFix(fixGcodeFlavor.checked)
                                 }
-                                manager.setInstanceId(base.selectedInstance.repetier_id)
+                                manager.setInstanceId(lblRepID.text)
                                 manager.setApiKey(apiKey.text)
                                 completed()
                             }
@@ -676,6 +664,7 @@
             property alias passwordText: passwordField.text
             property alias repidText: repid.editText
             property alias selrepidText: repid.currentText
+            property bool noPrintersFound: false
 
             title: catalog.i18nc("@title:window", "Manually added Repetier instance")
 
@@ -717,7 +706,7 @@
                     pathText = "/" + pathText // ensure absolute path
                 }
                 manager.setManualInstance(nameText, addressText, parseInt(portText), pathText, httpsCheckbox.checked, userNameText, passwordText, repidText)
-                manager.setContainerMetaDataEntry(base.selectedInstance.name, "repetier_id", repidText)
+                manager.setInstanceId(repidText)
             }
 
             Column {
@@ -795,8 +784,12 @@
                                     if (manager.getPrinters[i] !== "")
                                     {
                                         comboPrinters.append({ label: catalog.i18nc("@action:ComboBox option", manager.getPrinters[i]), key: manager.getPrinters[i] })
+                                        noPrintersFound = false
                                     }
                                 }
+                            }else{
+                                comboPrinters.clear()
+                                noPrintersFound = true
                             }
                         }
                     }
@@ -814,6 +807,7 @@
 
                     Cura.ComboBox
                     {
+
                         model: ListModel
                         {
                             id: comboPrinters

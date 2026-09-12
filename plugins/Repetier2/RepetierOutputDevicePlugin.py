@@ -136,13 +136,20 @@ class RepetierOutputDevicePlugin(OutputDevicePlugin):
             return
 
         for key in self._instances:
-            if key == global_container_stack.getMetaDataEntry("id"):
+            instance = self._instances[key]
+            repetierId = global_container_stack.getMetaDataEntry("repetier_id")
+            Logger.log("d", "Comparing instance.repetier_id=%s vs metadata repetier_id=%s" % (instance.repetier_id, repetierId))
+
+            if instance.repetier_id == repetierId:
+                Logger.log("d", "Repetier id matched successfully!")
                 api_key = global_container_stack.getMetaDataEntry("repetier_api_key", "")
                 self._instances[key].setApiKey(api_key)
                 self._instances[key].setShowCamera(parseBool(global_container_stack.getMetaDataEntry("repetier_show_camera", "true")))
                 self._instances[key].connectionStateChanged.connect(self._onInstanceConnectionStateChanged)
                 self._instances[key].connect()
             else:
+                Logger.log("e", "Failed to match the repetier id with the name of the printer ")
+
                 if self._instances[key].isConnected():
                     self._instances[key].close()
 
@@ -151,7 +158,7 @@ class RepetierOutputDevicePlugin(OutputDevicePlugin):
         instance = RepetierOutputDevice(name, address, port, properties)
         self._instances[instance.getId()] = instance
         global_container_stack = Application.getInstance().getGlobalContainerStack()
-        if global_container_stack and instance.getId() == global_container_stack.getMetaDataEntry("id"):
+        if global_container_stack and instance.getId() == global_container_stack.getMetaDataEntry("repetier_id"):
             api_key = global_container_stack.getMetaDataEntry("repetier_api_key", "")
             instance.setApiKey(api_key)
             instance.setShowCamera(parseBool(global_container_stack.getMetaDataEntry("repetier_show_camera", "true")))

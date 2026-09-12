@@ -65,6 +65,7 @@ class DiscoverRepetierAction(MachineAction):
         self._appkey_poll_timer.setInterval(500)
         self._appkey_poll_timer.setSingleShot(True)
         self._appkey_poll_timer.timeout.connect(self._pollApiKey)
+        self._printers_list_ready = False
 
         # Try to get version information from plugin.json
         plugin_file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "plugin.json")
@@ -178,6 +179,8 @@ class DiscoverRepetierAction(MachineAction):
 
     @pyqtSlot(str)
     def setInstanceId(self, key: str) -> None:
+        Logger.log("d", "setInstanceId called with %s" % key)
+
         global_container_stack = self._application.getGlobalContainerStack()
         if global_container_stack:
             global_container_stack.setMetaDataEntry("repetier_id", key)
@@ -314,6 +317,7 @@ class DiscoverRepetierAction(MachineAction):
 
     @pyqtSlot(str)
     def setApiKey(self, api_key: str) -> None:
+        Logger.log("d", "setApiKey called with %s" % api_key)
         global_container_stack = self._application.getGlobalContainerStack()
         if not global_container_stack:
             return
@@ -349,6 +353,10 @@ class DiscoverRepetierAction(MachineAction):
     @pyqtProperty(list)
     def getGroups(self):
         return self._groups
+
+    @pyqtProperty(bool)
+    def printerListReady(self):
+        return self._printers_list_ready
 
     @pyqtProperty(bool, notify = selectedInstanceSettingsChanged)
     def instanceResponded(self) -> bool:
@@ -479,25 +487,25 @@ class DiscoverRepetierAction(MachineAction):
     #  Handler for all requests that have finished.
     def _onRequestFinished(self, reply: QNetworkReply) -> None:
         if reply.error() == QNetworkReplyNetworkErrors.TimeoutError:
-#        if reply.error() == QNetworkReply.TimeoutError:
-            QMessageBox.warning(None,'Connection Timeout','Connection Timeout')
+            Logger.log("w", "Connection timed out!")
+            # QMessageBox.warning(None,'Connection Timeout','Connection Timeout')
             return
-#        http_status_code = reply.attribute(QNetworkRequest.HttpStatusCodeAttribute)
+        #        http_status_code = reply.attribute(QNetworkRequest.HttpStatusCodeAttribute)
         http_status_code = reply.attribute(QNetworkRequestAttributes.HttpStatusCodeAttribute)
         if not http_status_code:
-            #QMessageBox.warning(None,'Connection Attempt2',http_status_code)
+            # QMessageBox.warning(None,'Connection Attempt2',http_status_code)
             # Received no or empty reply
-            Logger.log("d","Received no or empty reply")
+            Logger.log("d", "Received no or empty reply")
             return
 
-#        if reply.operation() == QNetworkAccessManager.GetOperation:
+        #        if reply.operation() == QNetworkAccessManager.GetOperation:
         if reply.operation() == QNetworkAccessManagerOperations.GetOperation:
-            Logger.log("d",reply.url().toString())
+            Logger.log("d", reply.url().toString())
             if "printer/info" in reply.url().toString():  # Repetier settings dump from printer/info:            
                 if http_status_code == 200:
                     try:
                         json_data = json.loads(bytes(reply.readAll()).decode("utf-8"))
-                        Logger.log("d",reply.url().toString())
+                        Logger.log("d", reply.url().toString())
                         Logger.log("d", json_data)
                     except json.decoder.JSONDecodeError:
                         Logger.log("w", "Received invalid JSON from Repetier instance.")
@@ -510,6 +518,9 @@ class DiscoverRepetierAction(MachineAction):
                             for printerinfo in json_data["printers"]:
                                  Logger.log("d", "Slug: %s",printerinfo["slug"])
                                  self._printers.append(printerinfo["slug"])
+                            self._printers_list_ready = True
+
+                        self._printers_list_ready = False
 
                     if "apikey" in json_data:
                         Logger.log("d", "DiscoverRepetierAction: apikey: %s",json_data["apikey"])

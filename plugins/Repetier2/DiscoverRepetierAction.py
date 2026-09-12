@@ -272,7 +272,7 @@ class DiscoverRepetierAction(MachineAction):
         self._instance_responded = False        
         url = QUrl( base_url + "/printer/api/" + slug +"?a=listModelGroups&apikey=" + key)
         Logger.log("d", "getModelGroups:" + url.toString())
-        settings_request = QNetworkRequest(url)        
+        settings_request = QNetworkRequest(url)
         settings_request.setRawHeader("User-Agent".encode(), self._user_agent)        
         self._grouplist_reply=self._network_manager.get(settings_request)
         return self._groups

@@ -84,7 +84,7 @@ Cura.MachineAction
             id: pageDescription
             width: parent.width
             wrapMode: Text.WordWrap
-            text: catalog.i18nc("@label", "Select your Repetier instance from the list below:")
+            text: catalog.i18nc("@label", "Select your Repetier instance from the list below")
         }
 
         Row
@@ -733,7 +733,7 @@ Cura.MachineAction
 
                 UM.Label
                 {
-                    text: catalog.i18nc("@label","Instance Name")
+                    text: catalog.i18nc("@label","Server name")
                     width: Math.floor(parent.width * 0.4)    
                 }
 

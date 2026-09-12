@@ -90,9 +90,6 @@ jobs:
           find . -maxdepth 4 -name "*.spec"
           grep -n "name=r" FELIX-Filo/UltiMaker-Cura.spec || true
 
-      - name: Temp pause
-        run: ...
-
       - name: Install AppImage builder
         run: |
           chmod +x ./Cura-workflows/runner_scripts/appimage_setup.sh

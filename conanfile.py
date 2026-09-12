@@ -24,7 +24,7 @@ required_conan_version = ">=2.7.0" # When changing the version, also change the 
 
 
 class CuraConan(ConanFile):
-    name = "FELIX Filo"
+    name = "FELIX-Filo"
     license = "LGPL-3.0"
     author = "FELIX Robotics"
     url = "https://github.com/FELIXroboticsBV/FELIX-FILO"

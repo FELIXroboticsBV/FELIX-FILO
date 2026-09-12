@@ -80,6 +80,19 @@ jobs:
           package_overrides: ${{ inputs.package_overrides }}
           profile: installer.jinja
 
+      - name: What recipes are in the cache
+        run: |
+          conan list "cura/*" -c || true
+          conan list "*felix*" -c || true
+
+      - name: Where did the spec come from
+        run: |
+          find . -maxdepth 4 -name "*.spec"
+          grep -n "name=r" FELIX-Filo/UltiMaker-Cura.spec || true
+
+      - name: Temp pause
+        run: ...
+
       - name: Install AppImage builder
         run: |
           chmod +x ./Cura-workflows/runner_scripts/appimage_setup.sh
@@ -116,6 +129,8 @@ jobs:
         run: python Cura-workflows/runner_scripts/cleanup_distribution.py dist/UltiMaker-Cura --conandata _cura_sources/conandata.yml --os Linux
 
       - name: Create the Linux AppImage (Bash)
+        env:
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
         run: |
           python ../FELIX-Filo/packaging/AppImage-builder/create_appimage.py ./FELIX-Filo "${{ steps.prepare-distribution.outputs.CURA_VERSION_FULL }}" "${{ steps.prepare-distribution.outputs.INSTALLER_FILENAME }}.AppImage"
           chmod +x "${{ steps.prepare-distribution.outputs.INSTALLER_FILENAME }}.AppImage"

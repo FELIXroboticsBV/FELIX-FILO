@@ -134,20 +134,20 @@ jobs:
         run: |
           python ../FELIX-Filo/packaging/AppImage-builder/create_appimage.py ./FELIX-Filo "${{ steps.prepare-distribution.outputs.CURA_VERSION_FULL }}" "${{ steps.prepare-distribution.outputs.INSTALLER_FILENAME }}.AppImage"
           chmod +x "${{ steps.prepare-distribution.outputs.INSTALLER_FILENAME }}.AppImage"
-        working-directory: dist
+        working-directory: ./FELIX-Filo
 
       - name: Upload the AppImage
         uses: actions/upload-artifact@v7
         with:
           name: ${{ steps.prepare-distribution.outputs.INSTALLER_FILENAME }}-AppImage
-          path: dist/${{ steps.prepare-distribution.outputs.INSTALLER_FILENAME }}.AppImage
+          path: ./FELIX-Filo/${{ steps.prepare-distribution.outputs.INSTALLER_FILENAME }}.AppImage
           retention-days: 5
 
       - name: Upload the asc
         uses: actions/upload-artifact@v7
         with:
           name: ${{ steps.prepare-distribution.outputs.INSTALLER_FILENAME }}-asc
-          path: dist/${{ steps.prepare-distribution.outputs.INSTALLER_FILENAME }}.AppImage.asc
+          path: ./FELIX-Filo/${{ steps.prepare-distribution.outputs.INSTALLER_FILENAME }}.AppImage.asc
           retention-days: 5
 
       - name: Clean local cache

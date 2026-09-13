@@ -609,7 +609,7 @@ class CuraConan(ConanFile):
             collect_all = [item for item in collect_all if item != "pynavlib"]
 
         # Write the actual file:
-        with open(os.path.join(location, "UltiMaker-Cura.spec"), "w") as f:
+        with open(os.path.join(location, "FELIX-Filo.spec"), "w") as f:
             f.write(pyinstaller.render(
                 name = str(self.options.display_name).replace(" ", "-"),
                 display_name = self._app_name,

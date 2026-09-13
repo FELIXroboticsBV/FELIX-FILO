@@ -68,6 +68,22 @@ jobs:
       - name: Install FELIX Conan config
         run: |
           conan config install https://github.com/FELIXroboticsBV/conan-config.git
+          
+      - name: Set up ccache
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y ccache
+          echo "CCACHE_DIR=${{ github.workspace }}/.ccache" >> $GITHUB_ENV
+          echo "/usr/lib/ccache" >> $GITHUB_PATH
+          ccache --max-size=5G
+
+      - name: Restore ccache
+        uses: actions/cache@v4
+        with:
+          path: ${{ github.workspace }}/.ccache
+          key: ccache-${{ runner.os }}-${{ github.run_id }}
+          restore-keys: |
+            ccache-${{ runner.os }}-
 
       - name: Verify FELIX Conan profile
         run: |

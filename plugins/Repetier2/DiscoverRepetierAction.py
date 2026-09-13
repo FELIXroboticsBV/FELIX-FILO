@@ -38,7 +38,7 @@ if TYPE_CHECKING:
 catalog = i18nCatalog("cura")
 class DiscoverRepetierAction(MachineAction):
     def __init__(self, parent: QObject = None) -> None:
-        super().__init__("DiscoverRepetierAction", catalog.i18nc("@action", "Connect Repetier"))
+        super().__init__("DiscoverRepetierAction", catalog.i18nc("@action", "Connect to Repetier"))
 
         self._qml_url = "DiscoverRepetierAction.qml"
 
@@ -184,7 +184,12 @@ class DiscoverRepetierAction(MachineAction):
             title=catalog.i18nc("@info:title", "Repetier"),
             message_type=Message.MessageType.POSITIVE
         )
+
+        self.visibilityChanged.emit(False)
+
         message.show()
+
+
 
     @pyqtSlot(str)
     def setInstanceId(self, key: str) -> None:

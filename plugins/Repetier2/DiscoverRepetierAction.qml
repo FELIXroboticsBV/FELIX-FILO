@@ -634,9 +634,8 @@
                                 }
                                 manager.notifyConnectionSuccess()
                                 manager.setInstanceId(lblRepID.text)
-                                manager.setApiKey(apiKey.text)
+                                manager.setApiKey(apiKey.text);
                                 completed()
-                                console.log("completed() emitted, base.parent =", base.parent)
                             }
                         }
                     }

@@ -1,4 +1,4 @@
-name: Windows Installer
+name: LocalWindowsInstaller
 run-name: ${{ inputs.cura_conan_version }} for Windows-X64 by @${{ github.actor }}
 
 on:

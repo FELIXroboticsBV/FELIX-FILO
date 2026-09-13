@@ -83,7 +83,7 @@ jobs:
         run: |
           $pydir = type pydir.txt
           $env:PATH += ";$pydir;$pydir/Scripts"
-          conan install -verr --requires "${{ inputs.cura_conan_version != '' && inputs.cura_conan_version || format('cura/{0}@ultimaker/testing', steps.setup-environment.outputs.package_version) }}" ${{ inputs.conan_args }} --build=missing --update -of FELIX-Filo --deployer-package="*" --profile ${{ steps.set-overrides.outputs.profile }}  ${{ inputs.enterprise && '-o "cura/*:enterprise=True"' || '' }} ${{ inputs.staging && '-o "cura/*:staging=True"' || '' }} ${{ inputs.private_data && '-o "cura/*:internal=True"' || '' }} -o "cura/*:display_name=FELIX-Filo"
+          conan install --requires "${{ inputs.cura_conan_version != '' && inputs.cura_conan_version || format('cura/{0}@ultimaker/testing', steps.setup-environment.outputs.package_version) }}" ${{ inputs.conan_args }} --build=missing --update -of FELIX-Filo --deployer-package="*" --profile ${{ steps.set-overrides.outputs.profile }}  ${{ inputs.enterprise && '-o "cura/*:enterprise=True"' || '' }} ${{ inputs.staging && '-o "cura/*:staging=True"' || '' }} ${{ inputs.private_data && '-o "cura/*:internal=True"' || '' }} -o "cura/*:display_name=FELIX-Filo"
 
       - name: Create the Cura distribution with pyinstaller
         id: prepare-distribution

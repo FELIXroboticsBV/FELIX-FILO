@@ -120,10 +120,10 @@ jobs:
 
           python Cura-workflows/runner_scripts/prepare_installer.py --os ${{ runner.os }} --architecture X64 ${{ inputs.enterprise && '--enterprise' || '' }} ${{ inputs.private_data && '--internal' || '' }} --summary-output "$GITHUB_STEP_SUMMARY" --variables-output "$GITHUB_OUTPUT"
 
-          pyinstaller ./FELIX-Filo/UltiMaker-Cura.spec
+          pyinstaller ./FELIX-Filo/FELIX-Filo.spec
 
       - name: Remove unused packages in blacklist from "Cura/conandata.yml"
-        run: python Cura-workflows/runner_scripts/cleanup_distribution.py FELIX-FILO/FELIX-FILO --conandata _cura_sources/conandata.yml --os Linux
+        run: python Cura-workflows/runner_scripts/cleanup_distribution.py dist/FELIX-Filo --conandata _cura_sources/conandata.yml --os Linux
 
       - name: Create the Linux AppImage (Bash)
         env:

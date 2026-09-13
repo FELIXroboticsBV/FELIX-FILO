@@ -29,13 +29,13 @@ import re
 import os.path
 import json
 import base64
+from UM.Message import Message
 
 from typing import cast, Any, Tuple, Dict, List, Optional, TYPE_CHECKING
 if TYPE_CHECKING:
     from UM.Settings.ContainerInterface import ContainerInterface
 
 catalog = i18nCatalog("cura")
-
 class DiscoverRepetierAction(MachineAction):
     def __init__(self, parent: QObject = None) -> None:
         super().__init__("DiscoverRepetierAction", catalog.i18nc("@action", "Connect Repetier"))
@@ -176,6 +176,15 @@ class DiscoverRepetierAction(MachineAction):
             return instances
         else:
             return []
+
+    @pyqtSlot()
+    def notifyConnectionSuccess(self) -> None:
+        message = Message(
+            catalog.i18nc("@info:status", "Successfully connected to Repetier."),
+            title=catalog.i18nc("@info:title", "Repetier"),
+            message_type=Message.MessageType.POSITIVE
+        )
+        message.show()
 
     @pyqtSlot(str)
     def setInstanceId(self, key: str) -> None:

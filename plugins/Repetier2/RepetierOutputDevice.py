@@ -329,6 +329,7 @@ class RepetierOutputDevice(NetworkedPrinterOutputDevice):
         self._setAcceptsCommands(False)
         self.setConnectionText(i18n_catalog.i18nc("@info:status", "Connecting to Repetier on {0}").format(self._base_url))
 
+
         ## Request 'settings' dump
         self.get("getPrinterConfig", self._onRequestFinished)
         self._settings_reply = self._manager.get(self._createEmptyRequest("getPrinterConfig"))

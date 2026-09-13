@@ -632,9 +632,11 @@
                                 {
                                     manager.applyGcodeFlavorFix(fixGcodeFlavor.checked)
                                 }
+                                manager.notifyConnectionSuccess()
                                 manager.setInstanceId(lblRepID.text)
                                 manager.setApiKey(apiKey.text)
                                 completed()
+                                console.log("completed() emitted, base.parent =", base.parent)
                             }
                         }
                     }
@@ -706,7 +708,7 @@
                     pathText = "/" + pathText // ensure absolute path
                 }
                 manager.setManualInstance(nameText, addressText, parseInt(portText), pathText, httpsCheckbox.checked, userNameText, passwordText, repidText)
-                manager.setInstanceId(repidText)
+                //manager.setInstanceId(repidText)
             }
 
             Column {

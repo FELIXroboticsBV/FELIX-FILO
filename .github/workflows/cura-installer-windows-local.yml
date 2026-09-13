@@ -146,11 +146,11 @@ jobs:
           python ..\FELIX-Filo\packaging\NSIS\create_windows_installer.py --source_path ../FELIX-Filo --dist_path . --filename "${{steps.prepare-distribution.outputs.INSTALLER_FILENAME}}.exe" --version "${{ steps.prepare-distribution.outputs.CURA_VERSION_FULL }}"
         working-directory: dist
 
-      - name: Sign the Windows exe installer (Powershell)
-        run: |
-          & signtool sign /v /fd sha256 /tr http://timestamp.sectigo.com /td sha256 /f C:\actions-runner\code_sign.cer /csp "eToken Base Cryptographic Provider" /kc ${{ secrets.WIN_TOKEN_CONTAINER }} "${{steps.prepare-distribution.outputs.INSTALLER_FILENAME}}.exe"
-        working-directory: dist
-        timeout-minutes: 2
+#      - name: Sign the Windows exe installer (Powershell)
+#        run: |
+#          & signtool sign /v /fd sha256 /tr http://timestamp.sectigo.com /td sha256 /f C:\actions-runner\code_sign.cer /csp "eToken Base Cryptographic Provider" /kc ${{ secrets.WIN_TOKEN_CONTAINER }} "${{steps.prepare-distribution.outputs.INSTALLER_FILENAME}}.exe"
+#        working-directory: dist
+#        timeout-minutes: 2
 
       - name: Upload the installer exe
         if: ${{ always() }}
@@ -167,11 +167,11 @@ jobs:
           python ..\FELIX-Filo\packaging\msi\create_windows_msi.py --source_path ..\FELIX-Filo --dist_path .\FELIX-Filo --filename "${{ steps.prepare-distribution.outputs.INSTALLER_FILENAME }}.msi" --name "${{ steps.prepare-distribution.outputs.CURA_APP_NAME }}" --version "${{ steps.prepare-distribution.outputs.CURA_VERSION_FULL }}"
         working-directory: dist
 
-      - name: Sign the Windows msi installer (Powershell)
-        run: |
-          & signtool sign /v /fd sha256 /tr http://timestamp.sectigo.com /td sha256 /f C:\actions-runner\code_sign.cer /csp "eToken Base Cryptographic Provider" /kc ${{ secrets.WIN_TOKEN_CONTAINER }} "${{steps.prepare-distribution.outputs.INSTALLER_FILENAME}}.msi"
-        working-directory: dist
-        timeout-minutes: 2
+#      - name: Sign the Windows msi installer (Powershell)
+#        run: |
+#          & signtool sign /v /fd sha256 /tr http://timestamp.sectigo.com /td sha256 /f C:\actions-runner\code_sign.cer /csp "eToken Base Cryptographic Provider" /kc ${{ secrets.WIN_TOKEN_CONTAINER }} "${{steps.prepare-distribution.outputs.INSTALLER_FILENAME}}.msi"
+#        working-directory: dist
+#        timeout-minutes: 2
 
       - name: Upload the installer msi
         if: ${{ always() }}

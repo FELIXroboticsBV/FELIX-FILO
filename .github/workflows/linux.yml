@@ -47,7 +47,7 @@ jobs:
             exit 1
           else
             echo "SUCCESS: Secret is set (value masked in logs)"
-          fi
+          fi  
 
   linux-installer:
     needs: are-secretes-present

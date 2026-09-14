@@ -184,9 +184,6 @@ class DiscoverRepetierAction(MachineAction):
             title=catalog.i18nc("@info:title", "Repetier"),
             message_type=Message.MessageType.POSITIVE
         )
-
-        self.visibilityChanged.emit(False)
-
         message.show()
 
 

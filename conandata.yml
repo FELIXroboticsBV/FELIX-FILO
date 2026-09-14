@@ -34,7 +34,7 @@ pyinstaller:
         entrypoint: "cura_app.py"
     datas:
         cura_plugins:
-            package: "cura"
+            package: "felix-filo"
             src: "plugins"
             dst: "share/cura/plugins"
         native_cad_plugin:
@@ -48,11 +48,11 @@ pyinstaller:
             dst: "share/cura/resources/bundled_packages"
             enterprise_only: true
         cura_resources:
-            package: "cura"
+            package: "felix-filo"
             src: "resources"
             dst: "share/cura/resources"
         cura_shared_resources:
-            package: "cura_resources"
+            package: "felix-filo-resources"
             src: "res"
             dst: "share/cura/resources"
         uranium_plugins:

@@ -9,11 +9,11 @@ required_conan_version = ">=2.7.0"
 
 
 class CuraResource(ConanFile):
-    name = "cura_resources"
+    name = "felix-filo-resources"
     license = ""
-    author = "UltiMaker"
-    url = "https://github.com/Ultimaker/cura"
-    description = "Cura Resources"
+    author = "FELIXRobotics"
+    url = "https://github.com/"
+    description = "FELIX Filo resrouces "
     topics = ("conan", "cura")
     no_copy_source = True
     package_type = "shared-library"

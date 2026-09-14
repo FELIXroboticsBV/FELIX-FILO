@@ -86,8 +86,7 @@ jobs:
         run: |
           $pydir = type pydir.txt
           $env:PATH += ";$pydir;$pydir/Scripts"
-          conan export . --user=felix --channel=release
-        working-directory: ./_cura_sources
+          conan export ./_cura_sources --user=felix --channel=release
 
       - name: Gather/build the packages
         run: |

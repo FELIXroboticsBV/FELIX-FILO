@@ -107,13 +107,13 @@ jobs:
                   --passphrase "$GPG_PASSPHRASE" \
                   --import
       - name: Export local FELIX Cura recipe
-        run: conan export . --user=felix --channel=testing
+        run: conan export . --user=felix --channel=release
         working-directory: ./_cura_sources
 
 
 
       - name: Gather/build the packages
-        run: conan install -verror --requires "${{ inputs.cura_conan_version != '' && inputs.cura_conan_version || format('cura/{0}@felix/testing', steps.setup-environment.outputs.package_version) }}"
+        run: conan install -verror --requires "${{ inputs.cura_conan_version != '' && inputs.cura_conan_version || format('cura/{0}@felix/release', steps.setup-environment.outputs.package_version) }}"
 
       - name: Find the spec file
         run: find . -maxdepth 3 -name "*.spec"

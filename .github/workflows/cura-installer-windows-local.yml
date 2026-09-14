@@ -72,6 +72,9 @@ jobs:
         run: |
           conan config install https://github.com/FELIXroboticsBV/conan-config.git
 
+      - name: Debug tree
+        run: tree FELIX-Filo
+
       - name: Set packages overrides
         id: set-overrides
         uses: ultimaker/cura-workflows/.github/actions/set-package-overrides@main
@@ -79,12 +82,18 @@ jobs:
           package_overrides: ${{ inputs.package_overrides }}
           profile: installer.jinja
 
+      - name: Export local FELIX Cura recipe
+        run: |
+          $pydir = type pydir.txt
+          $env:PATH += ";$pydir;$pydir/Scripts"
+          conan export . --user=felix --channel=release
+        working-directory: ./_cura_sources
+
       - name: Gather/build the packages
         run: |
           $pydir = type pydir.txt
           $env:PATH += ";$pydir;$pydir/Scripts"
-          conan install --requires "${{ inputs.cura_conan_version != '' && inputs.cura_conan_version || format('cura/{0}@ultimaker/testing', steps.setup-environment.outputs.package_version) }}" ${{ inputs.conan_args }} --build=missing --update -of FELIX-Filo --deployer-package="*" --profile ${{ steps.set-overrides.outputs.profile }}  ${{ inputs.enterprise && '-o "cura/*:enterprise=True"' || '' }} ${{ inputs.staging && '-o "cura/*:staging=True"' || '' }} ${{ inputs.private_data && '-o "cura/*:internal=True"' || '' }} -o "cura/*:display_name=FELIX-Filo"
-
+          conan install --requires "${{ inputs.cura_conan_version != '' && inputs.cura_conan_version || format('cura/{0}@felix/release', steps.setup-environment.outputs.package_version) }}"
       - name: Create the Cura distribution with pyinstaller
         id: prepare-distribution
         shell: cmd

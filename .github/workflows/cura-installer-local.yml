@@ -113,7 +113,7 @@ jobs:
 
 
       - name: Gather/build the packages
-        run: conan install -verror --requires "${{ inputs.cura_conan_version != '' && inputs.cura_conan_version || format('cura/{0}@felix/release', steps.setup-environment.outputs.package_version) }}"
+        run: conan install -verror --requires "${{ inputs.cura_conan_version != '' && inputs.cura_conan_version || format('felix-filo/{0}@felix/release', steps.setup-environment.outputs.package_version) }}" ${{ inputs.conan_args }} --build=missing --update -of FELIX-Filo --deployer-package="*" --profile ${{ steps.set-overrides.outputs.profile }} ${{ inputs.enterprise && '-o "felix-filo/*:enterprise=True"' || '' }} ${{ inputs.staging && '-o "felix-filo/*:staging=True"' || '' }} ${{ inputs.private_data && '-o "felix-filo/*:internal=True"' || '' }} -o "felix-filo/*:skip_licenses_download=True"
 
       - name: Find the spec file
         run: find . -maxdepth 3 -name "*.spec"

@@ -808,11 +808,11 @@ class CuraConan(ConanFile):
         # Remove the fdm_materials from the package
         rmdir(self, os.path.join(self.package_folder, self.cpp.package.resdirs[0], "materials"))
 
-        # Remove the cura_resources resources from the package
-        rm(self, "conanfile.py", os.path.join(self.package_folder, self.cpp.package.resdirs[0]))
-        cura_resources = self.dependencies["felix-filo-resources"].cpp_info
-        for res_dir in cura_resources.resdirs:
-            rmdir(self, os.path.join(self.package_folder, self.cpp.package.resdirs[0], Path(res_dir).name))
+        # # Remove the cura_resources resources from the package
+        # cura_resources = self.dependencies["felix-filo-resources"].cpp_info
+        # for res_dir in cura_resources.resdirs:
+        #     rmdir(self, os.path.join(self.package_folder, self.cpp.package.resdirs[0], Path(res_dir).name))
+        # rm(self, "conanfile.py", os.path.join(self.package_folder, self.cpp.package.resdirs[0]))
 
         # Copy internal resources
         if self.options.internal:

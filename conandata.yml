@@ -34,7 +34,7 @@ pyinstaller:
         entrypoint: "cura_app.py"
     datas:
         cura_plugins:
-            package: "cura"
+            package: "felix-filo"
             src: "plugins"
             dst: "share/cura/plugins"
         native_cad_plugin:
@@ -48,7 +48,7 @@ pyinstaller:
             dst: "share/cura/resources/bundled_packages"
             enterprise_only: true
         cura_resources:
-            package: "cura"
+            package: "felix-filo"
             src: "resources"
             dst: "share/cura/resources"
         cura_shared_resources:
@@ -112,7 +112,7 @@ pyinstaller:
         - "PyQt6.Qt"
         - "PyQt6.Qt6"
     collect_all:
-        - "cura"
+        - "felix-filo"
         - "UM"
         - "serial"
         - "Charon"
@@ -129,9 +129,9 @@ pyinstaller:
         - "PyQt6.Qt"
         - "PyQt6.Qt6"
     icon:
-        Windows: "./icons/Cura.ico"
+        Windows: "./icons/felix-filo-icon.ico"
         Macos: "./icons/cura.icns"
-        Linux: "./icons/cura-128.png"
+        Linux: "./icons/felix-filo-icon_128x128.png"
     blacklist:
       - patterns: ["qt", "charts"]
       - patterns: ["qt", "coap"]

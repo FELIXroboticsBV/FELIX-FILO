@@ -13,7 +13,7 @@ class CuraResource(ConanFile):
     license = ""
     author = "UltiMaker"
     url = "https://github.com/Ultimaker/cura"
-    description = "Cura Resources"
+    description = "FELIX-Filo-resrouces"
     topics = ("conan", "cura")
     no_copy_source = True
     package_type = "shared-library"

@@ -707,7 +707,7 @@
                     pathText = "/" + pathText // ensure absolute path
                 }
                 manager.setManualInstance(nameText, addressText, parseInt(portText), pathText, httpsCheckbox.checked, userNameText, passwordText, repidText)
-                //manager.setInstanceId(repidText)
+                manager.setInstanceId(repidText)
             }
 
             Column {

@@ -773,7 +773,7 @@ class CuraConan(ConanFile):
 
         # Copy the cura_resources resources from the package
         rm(self, "conanfile.py", os.path.join(self.package_folder, self.cpp.package.resdirs[0]))
-        cura_resources = self.dependencies["felix-filo-resources"].cpp_info
+        cura_resources = self.dependencies["cura_resources"].cpp_info
         for res_dir in cura_resources.resdirs:
             copy(self, "*", res_dir, str(self._share_dir.joinpath("cura", "resources", Path(res_dir).name)), keep_path = True)
 

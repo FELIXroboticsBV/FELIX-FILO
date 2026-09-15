@@ -67,7 +67,7 @@ class WelcomePagesModel(ListModel):
 
         # If the welcome flow should be shown. It can show the complete flow or just the changelog depending on the
         # specific case. See initialize() for how this variable is set.
-        self._should_show_welcome_flow = False
+        self._should_show_welcome_flow = True
 
         self.initialize()
 
@@ -207,7 +207,7 @@ class WelcomePagesModel(ListModel):
 
     @pyqtProperty(bool, notify = shouldShowWelcomeFlowChanged)
     def shouldShowWelcomeFlow(self) -> bool:
-        return self._should_show_welcome_flow
+        return True#self._should_show_welcome_flow
 
     def getPageIndexById(self, page_id: str) -> Optional[int]:
         """Gets the page index with the given page ID. If the page ID doesn't exist, returns None."""
@@ -241,8 +241,8 @@ class WelcomePagesModel(ListModel):
             has_app_just_upgraded = self._application.hasJustUpdatedFromOldVersion()
 
             # Only show the what's new dialog if there's no machine and we have just upgraded
-            show_complete_flow = not has_active_machine
-            show_whats_new_only = has_active_machine and has_app_just_upgraded
+            show_complete_flow =True# not has_active_machine
+            show_whats_new_only = False #has_active_machine and has_app_just_upgraded
 
             # FIXME: This is a hack. Because of the circular dependency between MachineManager, ExtruderManager, and
             # possibly some others, setting the initial active machine is not done when the MachineManager gets
@@ -251,10 +251,10 @@ class WelcomePagesModel(ListModel):
             # the active machine gets changed, this model updates the flags, so it can decide whether to show the
             # welcome flow or not.
             should_show_welcome_flow = show_complete_flow or show_whats_new_only
-            if should_show_welcome_flow != self._should_show_welcome_flow:
-                self._should_show_welcome_flow = should_show_welcome_flow
-                self.shouldShowWelcomeFlowChanged.emit()
+            #if should_show_welcome_flow != self._should_show_welcome_flow:
 
+            self._should_show_welcome_flow = True
+            self.shouldShowWelcomeFlowChanged.emit()
         # All pages
         all_pages_list = [{"id": "welcome",
                            "page_url": self._getBuiltinWelcomePagePath("WelcomeContent.qml"),
@@ -301,8 +301,8 @@ class WelcomePagesModel(ListModel):
                           ]
 
         pages_to_show = all_pages_list
-        if show_whats_new_only:
-            pages_to_show = list(filter(lambda x: x["id"] == "whats_new", all_pages_list))
+        #if show_whats_new_only:
+            #ages_to_show = list(filter(lambda x: x["id"] == "whats_new", all_pages_list))
 
         self._pages = pages_to_show
         self.setItems(self._pages)

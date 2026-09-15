@@ -1068,7 +1068,7 @@ class CuraApplication(QtApplication):
     @deprecated("This should no more be called, you should directly create a new model instead", since="5.14.0")
     @pyqtSlot(result = QObject)
     def getWelcomePagesModel(self, *args) -> "WelcomePagesModel":
-        return WelcomePagesModel()
+        return  WelcomePagesModel()
 
     @deprecated("This should no more be called, you should directly create a new model instead", since="5.14.0")
     @pyqtSlot(result = QObject)

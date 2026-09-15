@@ -723,7 +723,7 @@
 
                     UM.Label
                     {
-                        text: catalog.i18nc("@label","Server name")
+                        text: "Connection name"
                         width: Math.floor(parent.width * 0.4)
                     }
 

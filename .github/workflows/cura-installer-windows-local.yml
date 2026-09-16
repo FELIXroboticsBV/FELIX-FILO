@@ -72,6 +72,11 @@ jobs:
         run: |
           conan config install https://github.com/FELIXroboticsBV/conan-config.git
 
+      - name: Verify FELIX Conan profile
+        continue-on-error: true
+        run: |
+          Select-String -Path "$env:USERPROFILE\.conan2\profiles\installer.jinja" -Pattern "sentry"
+
       - name: Set packages overrides
         id: set-overrides
         uses: ultimaker/cura-workflows/.github/actions/set-package-overrides@main
@@ -79,23 +84,46 @@ jobs:
           package_overrides: ${{ inputs.package_overrides }}
           profile: installer.jinja
 
+      - name: What recipes are in the cache
+        continue-on-error: true
+        run: |
+          conan list "cura/*" -c
+          conan list "*felix*" -c
+
+      - name: Where did the spec come from
+        continue-on-error: true
+        run: |
+          Get-ChildItem -Path . -Recurse -Depth 4 -Filter "*.spec"
+          Select-String -Path "FELIX-Filo\UltiMaker-Cura.spec" -Pattern "name=r"
+
       - name: Export local FELIX Cura recipe
         run: |
-          $pydir = type pydir.txt
+          $pydir = type ../pydir.txt
           $env:PATH += ";$pydir;$pydir/Scripts"
-          conan export ./_cura_sources --user=felix --channel=release
+          conan export . --user=felix --channel=release
+        working-directory: ./_cura_sources
 
       - name: Gather/build the packages
         run: |
           $pydir = type pydir.txt
           $env:PATH += ";$pydir;$pydir/Scripts"
-          conan install -v error --requires "${{ inputs.cura_conan_version != '' && inputs.cura_conan_version || format('felix-filo/{0}@felix/release', steps.setup-environment.outputs.package_version) }}" ${{ inputs.conan_args }} --build=missing --update -of cura_inst --deployer-package="*" --profile ${{ steps.set-overrides.outputs.profile }}  ${{ inputs.enterprise && '-o "felix-filo/*:enterprise=True"' || '' }} ${{ inputs.staging && '-o "felix-filo/*:staging=True"' || '' }} ${{ inputs.private_data && '-o "felix-filo/*:internal=True"' || '' }}
-      
-      - name: Debug tree
-        run: tree
+          conan install -verror --requires "${{ inputs.cura_conan_version != '' && inputs.cura_conan_version || format('felix-filo/{0}@felix/release', steps.setup-environment.outputs.package_version) }}" ${{ inputs.conan_args }} --build=missing --update -of FELIX-Filo --deployer-package="*" --profile ${{ steps.set-overrides.outputs.profile }}  ${{ inputs.enterprise && '-o "felix-filo/*:enterprise=True"' || '' }} ${{ inputs.staging && '-o "felix-filo/*:staging=True"' || '' }} ${{ inputs.private_data && '-o "felix-filo/*:internal=True"' || '' }}
+
+      - name: Find the spec file
+        continue-on-error: true
+        run: |
+          Get-ChildItem -Path . -Recurse -Depth 3 -Filter "*.spec"
 
       - name: Debug ls
-        run: dir
+        run: |
+          Get-ChildItem -Path FELIX-Filo -Force
+
+      - name: Debug ls root
+        run: |
+          Get-ChildItem -Path .
+
+      - name: Debug tree
+        run: tree FELIX-Filo /F
 
       - name: Create the Cura distribution with pyinstaller
         id: prepare-distribution
@@ -113,6 +141,9 @@ jobs:
           python Cura-workflows\runner_scripts\prepare_installer.py --os ${{ runner.os }} --architecture X64 ${{ inputs.enterprise && '--enterprise' || '' }} ${{ inputs.private_data && '--internal' || '' }} --summary-output %GITHUB_STEP_SUMMARY% --variables-output %GITHUB_OUTPUT%
 
           pyinstaller FELIX-Filo\FELIX-Filo.spec
+
+      - name: Debug confirm dist output name
+        run: Get-ChildItem -Path dist -Force
 
       # - name: Sign the internal executables
       #   working-directory: dist/FELIX-Filo

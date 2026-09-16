@@ -139,6 +139,9 @@ jobs:
           python Cura-workflows/runner_scripts/prepare_installer.py --os ${{ runner.os }} --architecture X64 ${{ inputs.enterprise && '--enterprise' || '' }} ${{ inputs.private_data && '--internal' || '' }} --summary-output "$GITHUB_STEP_SUMMARY" --variables-output "$GITHUB_OUTPUT"
 
           pyinstaller ./FELIX-Filo/FELIX-Filo.spec
+          
+      - name: Debug confirm dist output name
+        run: ls -la dist/
 
       - name: Remove unused packages in blacklist from "Cura/conandata.yml"
         run: python Cura-workflows/runner_scripts/cleanup_distribution.py dist/FELIX-Filo --conandata _cura_sources/conandata.yml --os Linux
@@ -147,22 +150,22 @@ jobs:
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
         run: |
-          python ../FELIX-Filo/packaging/AppImage-builder/create_appimage.py ./FELIX-Filo "${{ steps.prepare-distribution.outputs.CURA_VERSION_FULL }}" "${{ steps.prepare-distribution.outputs.INSTALLER_FILENAME }}.AppImage"
-          chmod +x "${{ steps.prepare-distribution.outputs.INSTALLER_FILENAME }}.AppImage"
+          python ../FELIX-Filo/packaging/AppImage-builder/create_appimage.py ../dist/FELIX-Filo "1.0-alpha" "Felix-Filo.AppImage"
+          chmod +x "Felix-Filo.AppImage"
         working-directory: ./FELIX-Filo
 
       - name: Upload the AppImage
         uses: actions/upload-artifact@v7
         with:
-          name: ${{ steps.prepare-distribution.outputs.INSTALLER_FILENAME }}-AppImage
-          path: ./FELIX-Filo/${{ steps.prepare-distribution.outputs.INSTALLER_FILENAME }}.AppImage
+          name: FELIX-Filo-AppImage
+          path: ./FELIX-Filo/FELIX-Filo.AppImage
           retention-days: 5
 
       - name: Upload the asc
         uses: actions/upload-artifact@v7
         with:
-          name: ${{ steps.prepare-distribution.outputs.INSTALLER_FILENAME }}-asc
-          path: ./FELIX-Filo/${{ steps.prepare-distribution.outputs.INSTALLER_FILENAME }}.AppImage.asc
+          name: FELIX-Filo-asc
+          path: ./FELIX-Filo/FELIX-Filo.AppImage.asc
           retention-days: 5
 
       - name: Clean local cache

@@ -72,12 +72,6 @@ jobs:
         run: |
           conan config install https://github.com/FELIXroboticsBV/conan-config.git
 
-      - name: Debug tree
-        run: tree
-
-      - name: Debug ls
-        run: dir
-
       - name: Set packages overrides
         id: set-overrides
         uses: ultimaker/cura-workflows/.github/actions/set-package-overrides@main
@@ -96,6 +90,12 @@ jobs:
           $pydir = type pydir.txt
           $env:PATH += ";$pydir;$pydir/Scripts"
           conan install -v error --requires "${{ inputs.cura_conan_version != '' && inputs.cura_conan_version || format('felix-filo/{0}@felix/release', steps.setup-environment.outputs.package_version) }}" ${{ inputs.conan_args }} --build=missing --update -of cura_inst --deployer-package="*" --profile ${{ steps.set-overrides.outputs.profile }}  ${{ inputs.enterprise && '-o "felix-filo/*:enterprise=True"' || '' }} ${{ inputs.staging && '-o "felix-filo/*:staging=True"' || '' }} ${{ inputs.private_data && '-o "felix-filo/*:internal=True"' || '' }}
+      
+      - name: Debug tree
+        run: tree
+
+      - name: Debug ls
+        run: dir
 
       - name: Create the Cura distribution with pyinstaller
         id: prepare-distribution

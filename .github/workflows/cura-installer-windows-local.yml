@@ -73,7 +73,10 @@ jobs:
           conan config install https://github.com/FELIXroboticsBV/conan-config.git
 
       - name: Debug tree
-        run: tree FELIX-Filo
+        run: tree
+
+      - name: Debug ls
+        run: dir
 
       - name: Set packages overrides
         id: set-overrides

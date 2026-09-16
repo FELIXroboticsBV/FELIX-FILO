@@ -61,7 +61,7 @@ def copy_files(dist_path):
     Copy metadata files for the metadata of the AppImage.
     """
     copied_files = {
-        os.path.join("..", "icons", "felix-filo-icon-256-256.svg"): os.path.join("usr", "share", "icons", "hicolor", "scalable", "apps", "felix-filo-icon.svg"),
+        os.path.join("..", "icons", "felix-filo-icon-256x256.svg"): os.path.join("usr", "share", "icons", "hicolor", "scalable", "apps", "felix-filo-icon.svg"),
         os.path.join("..", "icons", "felix-filo-icon-64x64.png"): os.path.join("usr", "share", "icons", "hicolor", "64x64", "apps", "felix-filo-icon.png"),
         os.path.join("..", "icons", "felix-filo-icon-128x128.png"): os.path.join("usr", "share", "icons", "hicolor", "128x128", "apps", "felix-filo-icon.png"),
         os.path.join("..", "icons", "felix-filo-icon-256x256.ico"): os.path.join("usr", "share", "icons", "hicolor", "256x256", "apps", "felix-filo-icon.png"),

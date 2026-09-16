@@ -121,8 +121,11 @@ jobs:
       - name: Debug ls
         run: ls FELIX-Filo -l -a
 
+      - name: Debug ls root
+        run: ls -d
+
       - name: Debug tree
-        run: tree FELIX-Filo
+        run: tree FELIX-Filo -d
 
 
       - name: Create the Cura distribution with pyinstaller

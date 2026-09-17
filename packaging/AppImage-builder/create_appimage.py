@@ -32,6 +32,27 @@ def prepare_workspace(dist_path, appimage_filename):
     copy_files("AppDir")
 
 
+def sign_appimage(appimage_filename):
+    passphrase = os.environ["GPG_PASSPHRASE"]
+
+    command = [
+        "gpg",
+        "--batch",
+        "--yes",
+        "--pinentry-mode",
+        "loopback",
+        "--passphrase",
+        passphrase,
+        "--armor",
+        "--detach-sig",
+        appimage_filename,
+    ]
+
+    result = subprocess.call(command)
+
+    if result != 0:
+        raise RuntimeError(f"The GPG command returned non-zero: {result}")
+
 def build_appimage(dist_path, version, appimage_filename):
     """
     Creates an AppImage file from the build artefacts created so far.
@@ -83,22 +104,6 @@ def create_appimage():
     result = subprocess.call(command)
     if result != 0:
         raise RuntimeError(f"The AppImageTool command returned non-zero: {result}")
-
-
-    passphrase = os.environ["GPG_PASSPHRASE"]
-
-    command = [
-        "gpg",
-        "--batch",
-        "--yes",
-        "--pinentry-mode",
-        "loopback",
-        "--passphrase",
-        passphrase,
-        "--armor",
-        "--detach-sig",
-        appimage_filename,
-    ]
 
     result = subprocess.call(command)
 

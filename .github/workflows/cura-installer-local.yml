@@ -149,8 +149,8 @@ jobs:
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
         run: |
-          python ../FELIX-Filo/packaging/AppImage-builder/create_appimage.py ../dist/FELIX-Filo "1.0-alpha" "Felix-Filo.AppImage"
-          chmod +x "Felix-Filo.AppImage"
+          python ../FELIX-Filo/packaging/AppImage-builder/create_appimage.py ../dist/FELIX-Filo "1.0-alpha" "FELIX-Filo.AppImage"
+          chmod +x "FELIX-Filo.AppImage"
         working-directory: ./FELIX-Filo
 
       - name: Upload the AppImage

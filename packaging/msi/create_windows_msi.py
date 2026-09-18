@@ -42,13 +42,13 @@ def generate_wxs(source_path: Path, dist_path: Path, filename: Path, app_name: s
         {"ext": "gcode", "prog_id": "Cura.gcode",       "type_description": "G-code files",                                "section_title": "*.GCODE files",    "feature_description": "Associate .GCODE and .G (G-code) files",                    "optional": True,   "extra_exts": ["g"]},
     ]
 
-    jinja_template_path = Path(source_loc.joinpath("packaging", "msi", "UltiMaker-Cura.wxs.jinja"))
+    jinja_template_path = Path(source_loc.joinpath("packaging", "msi", "FELIX-Filo.wxs.jinja"))
     with open(jinja_template_path, "r") as f:
         template = Template(f.read())
 
     wxs_content = template.render(
         app_name=f"{app_name}",
-        main_app="UltiMaker-Cura.exe",
+        main_app="FELIX-Filo.exe",
         version=version,
         version_major=str(parsed_version.major),
         version_minor=str(parsed_version.minor),
@@ -63,7 +63,7 @@ def generate_wxs(source_path: Path, dist_path: Path, filename: Path, app_name: s
         file_associations=file_associations,
     )
 
-    with open(work_loc.joinpath("UltiMaker-Cura.wxs"), "w") as f:
+    with open(work_loc.joinpath("FELIX-Filo.wxs"), "w") as f:
         f.write(wxs_content)
 
     try:
@@ -85,7 +85,7 @@ def cleanup_artifacts(dist_path: Path):
 def build(dist_path: Path, filename: Path):
     dist_loc = Path(os.getcwd(), dist_path)
     work_loc = work_path(filename)
-    wxs_loc = work_loc.joinpath("UltiMaker-Cura.wxs")
+    wxs_loc = work_loc.joinpath("FELIX-Filo.wxs")
     heat_loc = work_loc.joinpath("HeatFile.wxs")
     exclude_components_loc = work_loc.joinpath("ExcludeComponents.xslt")
     build_loc = work_loc.joinpath("build_msi")
@@ -130,7 +130,7 @@ if __name__ == "__main__":
     parser.add_argument("--source_path", type=Path, help="Path to Conan install Cura folder.")
     parser.add_argument("--dist_path", type=Path, help="Path to Pyinstaller dist folder")
     parser.add_argument("--filename", type=Path,
-                        help="Filename of the exe (e.g. 'UltiMaker-Cura-5.1.0-beta-Windows-X64.msi')")
+                        help="Filename of the exe (e.g. 'FELIX-Filo-5.1.0-beta-Windows-X64.msi')")
     parser.add_argument("--name", type=str, help="App name (e.g. 'UltiMaker Cura')")
     parser.add_argument("--version", type=str, help="The full cura version, e.g. 5.9.0-beta.1+24132")
     args = parser.parse_args()

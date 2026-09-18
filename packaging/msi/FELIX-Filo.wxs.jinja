@@ -76,7 +76,7 @@
         <Component Id="CMP_UltiMaker_Cura_exe" Directory="APPLICATIONFOLDER" Guid="*">
             <File Id="FILE_UltiMaker_Cura_exe" KeyPath="yes" Source="$(var.CuraDir)\{{ main_app }}" />
 
-            <fw:FirewallException Id="FirewallExceptLocalFrontend" Name="Cura (Frontend) Connection (LocalHost)" File="FILE_UltiMaker_Cura_exe" IgnoreFailure="yes">
+            <fw:FirewallException Id="FirewallExceptLocalFrontend" Name="FELIX-Filo (Frontend) Connection (LocalHost)" File="FILE_UltiMaker_Cura_exe" IgnoreFailure="yes">
                 <fw:RemoteAddress>127.0.0.1</fw:RemoteAddress>
             </fw:FirewallException>
         </Component>

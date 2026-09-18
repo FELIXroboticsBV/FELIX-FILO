@@ -1001,6 +1001,26 @@ class CuraEngineBackend(QObject, Backend):
             warning_message.actionTriggered.connect(self._onMessageActionTriggered)
             warning_message.show()
 
+        max_syringe_volume = 0 # mm3
+        global_stack = CuraApplication.getInstance().getMachineManager().activeMachine
+
+        is_food_printer =  global_stack.getMetaDataEntry("felix-printer-type", "plastic") == "food"
+        ## if ther ammout of fillamaet exeets the ammount which can be held by the food printer`s syringe
+        if material_amounts > 0 & is_food_printer:
+            warning_message = Message(
+                text=catalog.i18nc("@message", "<html></html>"),
+                title=catalog.i18nc("@message:title", "Unused Extruder(s)"),
+                message_type=Message.MessageType.WARNING)
+
+            warning_message.addAction("ignore",
+                                      name=catalog.i18nc("@button", "Ignore"),
+                                      icon="",
+                                      description="Ignore this warning"
+                                      )
+
+            warning_message.show()
+
+
         times = self._parseMessagePrintTimes(message)
         self.printDurationMessage.emit(self._start_slice_job_build_plate, times, material_amounts, material_lengths, material_weights, material_costs, material_names)
 
@@ -1020,6 +1040,8 @@ class CuraEngineBackend(QObject, Backend):
             message.hide()
             for required_extruder in self._required_extruders:
                 CuraApplication.getInstance().getMachineManager().setExtruderEnabled(required_extruder, True)
+        elif message_action == "ignore":
+            message.hide()
 
     def _parseMessagePrintTimes(self, message: Arcus.PythonMessage) -> Dict[str, float]:
         """Called for parsing message to retrieve estimated time per feature

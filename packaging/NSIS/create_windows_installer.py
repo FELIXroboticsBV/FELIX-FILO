@@ -19,16 +19,16 @@ def generate_nsi(source_path: str, dist_path: str, filename: str, version: str):
     dist_loc = Path(os.getcwd(), dist_path)
     source_loc = Path(os.getcwd(), source_path)
     instdir = Path("$INSTDIR")
-    dist_paths = [p.relative_to(dist_loc.joinpath("FELIXFilo")) for p in sorted(dist_loc.joinpath("FELIXFilo").rglob("*")) if p.is_file()]
+    dist_paths = [p.relative_to(dist_loc.joinpath("FELIX-Filo")) for p in sorted(dist_loc.joinpath("FELIX-Filo").rglob("*")) if p.is_file()]
     parsed_version = semver.Version.parse(version)
     mapped_out_paths = {}
     for dist_path in dist_paths:
         if "__pycache__" not in dist_path.parts:
             out_path = instdir.joinpath(dist_path).parent
             if out_path not in mapped_out_paths:
-                mapped_out_paths[out_path] = [(dist_loc.joinpath("FELIXFilo", dist_path), instdir.joinpath(dist_path))]
+                mapped_out_paths[out_path] = [(dist_loc.joinpath("FELIX-Filo", dist_path), instdir.joinpath(dist_path))]
             else:
-                mapped_out_paths[out_path].append((dist_loc.joinpath("FELIXFilo", dist_path), instdir.joinpath(dist_path)))
+                mapped_out_paths[out_path].append((dist_loc.joinpath("FELIX-Filo", dist_path), instdir.joinpath(dist_path)))
 
     rmdir_paths = set()
     for rmdir_f in mapped_out_paths.values():
@@ -52,14 +52,14 @@ def generate_nsi(source_path: str, dist_path: str, filename: str, version: str):
         {"ext": "gcode", "prog_id": "Cura.gcode",        "type_description": "G-code files",                                "section_title": "*.GCODE files",       "feature_description": "Associate .GCODE and .G (G-code) files",                        "optional": True,   "extra_exts": ["g"]},
     ]
 
-    jinja_template_path = Path(source_loc.joinpath("packaging", "NSIS", "FELIXFilo.nsi.jinja"))
+    jinja_template_path = Path(source_loc.joinpath("packaging", "NSIS", "FELIX-Filo.nsi.jinja"))
     with open(jinja_template_path, "r") as f:
         template = Template(f.read())
 
 
     nsis_content = template.render(
-        app_name = f"FELIXFILO {version}",
-        main_app = "FELIXFilo.exe",
+        app_name = f"FELIX-Filo {version}",
+        main_app = "FELIX-Filo.exe",
         version = version,
         version_major = str(parsed_version.major),
         version_minor = str(parsed_version.minor),
@@ -76,7 +76,7 @@ def generate_nsi(source_path: str, dist_path: str, filename: str, version: str):
         file_associations = file_associations,
     )
 
-    with open(dist_loc.joinpath("FELIXFilo.nsi"), "w") as f:
+    with open(dist_loc.joinpath("FELIX-Filo.nsi"), "w") as f:
         f.write(nsis_content)
 
     shutil.copy(source_loc.joinpath("packaging", "NSIS", "fileassoc.nsh"), dist_loc.joinpath("fileassoc.nsh"))
@@ -84,7 +84,7 @@ def generate_nsi(source_path: str, dist_path: str, filename: str, version: str):
 
 def build(dist_path: str):
     dist_loc = Path(os.getcwd(), dist_path)
-    command = ["makensis", "/V2", "/P4", str(dist_loc.joinpath("FELIXFilo.nsi"))]
+    command = ["makensis", "/V2", "/P4", str(dist_loc.joinpath("FELIX-Filo.nsi"))]
     subprocess.run(command)
 
 

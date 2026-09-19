@@ -86,6 +86,7 @@ class PrintInformation(QObject):
         self._material_weights = {0: [0.0 for index in range(nb_extruders)]}
         self._material_costs = {0: [0.0 for index in range(nb_extruders)]}
         self._material_names = {0: ['' for index in range(nb_extruders)]}
+        self._material_in_ml = 0;
 
     def initializeCuraMessagePrintTimeProperties(self) -> None:
         self._current_print_time = {}  # type: Dict[int, Duration]

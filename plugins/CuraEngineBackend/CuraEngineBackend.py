@@ -1001,22 +1001,34 @@ class CuraEngineBackend(QObject, Backend):
             warning_message.actionTriggered.connect(self._onMessageActionTriggered)
             warning_message.show()
 
-        max_syringe_volume = 0 # mm3
+        max_syringe_volume = 70 # 70ml from (https://felixfood.nl/stainless-steel-syringe-premium-printers.html)
+        material_amount_ml  = material_amounts[0] / 1000.0 # convert from mm3 to the ml
+
         global_stack = CuraApplication.getInstance().getMachineManager().activeMachine
 
         is_food_printer =  global_stack.getMetaDataEntry("felix-printer-type", "plastic") == "food"
         ## if ther ammout of fillamaet exeets the ammount which can be held by the food printer`s syringe
-        if material_amounts > 0 & is_food_printer:
+        if material_amount_ml > max_syringe_volume and is_food_printer:
             warning_message = Message(
-                text=catalog.i18nc("@message", "<html></html>"),
-                title=catalog.i18nc("@message:title", "Unused Extruder(s)"),
-                message_type=Message.MessageType.WARNING)
+                text=catalog.i18nc(
+                    "@message",
+                    "<html>Not enough room in the syringe to fully print this model. "
+                    "This model needs {model_amount:.1f} mL, but the syringe only holds {syringe_amount:.1f} mL. "
+                    "To fix it, make the model smaller or disable the model supports.</html>"
+                ).format(
+                    model_amount=material_amount_ml,
+                    syringe_amount=max_syringe_volume
+                ),
+                title=catalog.i18nc("@message:title", "Syringe overflow"),
+                message_type=Message.MessageType.WARNING
+            )
 
-            warning_message.addAction("ignore",
-                                      name=catalog.i18nc("@button", "Ignore"),
-                                      icon="",
-                                      description="Ignore this warning"
-                                      )
+            warning_message.addAction(
+                "ignore",
+                name=catalog.i18nc("@button", "Ok"),
+                icon="",
+                description="Ignore this warning"
+            )
 
             warning_message.show()
 

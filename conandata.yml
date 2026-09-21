@@ -113,6 +113,7 @@ pyinstaller:
         - "PyQt6.Qt6"
     collect_all:
         - "felix-filo"
+        - "cura"
         - "UM"
         - "serial"
         - "Charon"

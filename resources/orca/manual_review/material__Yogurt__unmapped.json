@@ -1,0 +1,83 @@
+{
+    "note": "Found in the source Cura file but not written into the generated Orca preset because it did not map cleanly to a verified Orca machine/filament key. It may belong on an Orca PROCESS preset instead (walls, infill, speeds, supports, cooling curve, coasting, bridging are all process-level in Orca, not machine/filament level) -- and process conversion was explicitly skipped.",
+    "global_settings_not_used": {
+        "print temperature": "0"
+    },
+    "per_hotend_settings_not_used": {
+        "0.5 mm": {
+            "retraction_extra_prime_amount": "0",
+            "cool_min_speed": "5",
+            "material_flow": "110",
+            "switch_extruder_retraction_amount": "1.5",
+            "switch_extruder_retraction_speeds": "5",
+            "switch_extruder_retraction_speed": "5",
+            "switch_extruder_prime_speed": "5",
+            "switch_extruder_extra_prime_amount": "0",
+            "coasting_enable": "True",
+            "coasting_volume": "0.25",
+            "coasting_min_volume": "0",
+            "coasting_speed": "100",
+            "skin_overlap": "0"
+        },
+        "1.0 mm": {
+            "retraction_extra_prime_amount": "0",
+            "cool_min_speed": "5",
+            "material_flow": "110",
+            "switch_extruder_retraction_amount": "1.5",
+            "switch_extruder_retraction_speeds": "5",
+            "switch_extruder_retraction_speed": "5",
+            "switch_extruder_prime_speed": "5",
+            "switch_extruder_extra_prime_amount": "0",
+            "coasting_enable": "True",
+            "coasting_volume": "1",
+            "coasting_min_volume": "0",
+            "coasting_speed": "100",
+            "skin_overlap": "0"
+        },
+        "2.0 mm": {
+            "retraction_extra_prime_amount": "0",
+            "cool_min_speed": "5",
+            "material_flow": "110",
+            "switch_extruder_retraction_amount": "1.5",
+            "switch_extruder_retraction_speeds": "5",
+            "switch_extruder_retraction_speed": "5",
+            "switch_extruder_prime_speed": "5",
+            "switch_extruder_extra_prime_amount": "0",
+            "coasting_enable": "True",
+            "coasting_volume": "4",
+            "coasting_min_volume": "0",
+            "coasting_speed": "100",
+            "skin_overlap": "0"
+        },
+        "3.0 mm": {
+            "retraction_extra_prime_amount": "0",
+            "cool_min_speed": "5",
+            "material_flow": "115",
+            "switch_extruder_retraction_amount": "3",
+            "switch_extruder_retraction_speeds": "5",
+            "switch_extruder_retraction_speed": "5",
+            "switch_extruder_prime_speed": "5",
+            "switch_extruder_extra_prime_amount": "0",
+            "coasting_enable": "True",
+            "coasting_volume": "9",
+            "coasting_min_volume": "0",
+            "coasting_speed": "100",
+            "skin_overlap": "0"
+        },
+        "4.0 mm": {
+            "retraction_extra_prime_amount": "0",
+            "cool_min_speed": "5",
+            "material_flow": "115",
+            "switch_extruder_retraction_amount": "4",
+            "switch_extruder_retraction_speeds": "5",
+            "switch_extruder_retraction_speed": "5",
+            "switch_extruder_prime_speed": "5",
+            "switch_extruder_extra_prime_amount": "0",
+            "coasting_enable": "True",
+            "coasting_volume": "16",
+            "coasting_min_volume": "0",
+            "coasting_speed": "100",
+            "skin_overlap": "0"
+        }
+    }
+}

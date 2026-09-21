@@ -146,27 +146,31 @@ jobs:
         run: python Cura-workflows/runner_scripts/cleanup_distribution.py dist/FELIX-Filo --conandata _cura_sources/conandata.yml --os Linux
 
       - name: Create the Linux AppImage (Bash)
+        id: create-appimage
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
         run: |
-          python ../FELIX-Filo/packaging/AppImage-builder/create_appimage.py ../dist/FELIX-Filo "1.0-alpha" "FELIX-Filo.AppImage"
-          chmod +x "FELIX-Filo.AppImage"
+          
+          APPIMAGE_NAME="FELIX-Filo-Linux-v${{ steps.setup-environment.outputs.package_version }}.AppImage"
+          echo "appimage_name=$APPIMAGE_NAME" >> "$GITHUB_OUTPUT"
+      
+          python ../FELIX-Filo/packaging/AppImage-builder/create_appimage.py ../dist/FELIX-Filo "1.0-alpha" "$APPIMAGE_NAME"
+          chmod +x "$APPIMAGE_NAME"
         working-directory: ./FELIX-Filo
 
       - name: Upload the AppImage
         uses: actions/upload-artifact@v7
         with:
           name: FELIX-Filo-AppImage
-          path: ./FELIX-Filo/FELIX-Filo.AppImage
+          path: ./FELIX-Filo/${{ steps.create-appimage.outputs.appimage_name }}
           retention-days: 5
 
       - name: Upload the asc
         uses: actions/upload-artifact@v7
         with:
           name: FELIX-Filo-asc
-          path: ./FELIX-Filo/FELIX-Filo.AppImage.asc
+          path: ./FELIX-Filo/${{ steps.create-appimage.outputs.appimage_name }}.asc
           retention-days: 5
-
       - name: Clean local cache
         if: ${{ always() && startsWith(inputs.operating_system, 'self-hosted') }}
         run: conan remove '*' --lru=1w -c

@@ -775,7 +775,12 @@ class CuraConan(ConanFile):
         rm(self, "conanfile.py", os.path.join(self.package_folder, self.cpp.package.resdirs[0]))
         cura_resources = self.dependencies["cura_resources"].cpp_info
         for res_dir in cura_resources.resdirs:
-            copy(self, "*", res_dir, str(self._share_dir.joinpath("cura", "resources", Path(res_dir).name)), keep_path = True)
+            if Path(res_dir).name != "definitions":
+                continue
+            copy(self, "fdmprinter.def.json", res_dir,
+                 str(self._share_dir.joinpath("cura", "resources", "definitions")), keep_path=False)
+            copy(self, "fdmextruder.def.json", res_dir,
+                 str(self._share_dir.joinpath("cura", "resources", "definitions")), keep_path=False)
 
         # Copy resources of Uranium (keep folder structure)
         uranium = self.dependencies["uranium"].cpp_info

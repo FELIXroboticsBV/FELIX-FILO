@@ -161,7 +161,7 @@ Rectangle
             id: noConnectionLabel
             anchors.horizontalCenter: parent.horizontalCenter
             visible: !isNetworkConfigurable
-            text: "In order to monitor your print from Cura, please connect the printer."
+            text: "In order to monitor your print from FILO, please connect the printer."
                 //catalog.i18nc("@info", "In order to monitor your print from Cura, please connect the printer.")
             font: UM.Theme.getFont("medium")
             wrapMode: Text.WordWrap

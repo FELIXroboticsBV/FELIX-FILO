@@ -80,6 +80,9 @@ jobs:
           package_overrides: ${{ inputs.package_overrides }}
           profile: installer.jinja
 
+      - name: Debug show generated override profile
+        run: cat ~/.conan2/profiles/installer.jinja.override || find ~/.conan2/profiles -name "installer.jinja.override" -exec cat {} \;
+
       - name: What recipes are in the cache
         run: |
           conan list "cura/*" -c || true

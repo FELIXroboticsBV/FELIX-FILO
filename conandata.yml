@@ -1,7 +1,7 @@
 version: "1.0-alpha"
 commit: "unknown"
 requirements:
-  - "cura_resources/5.14.0-alpha.0@ultimaker/testing"
+  - "cura_resources/1.0.0-alpha@felix/release"
   - "uranium/5.14.0-alpha.0@ultimaker/testing"
   - "curaengine/5.14.0-alpha.0@ultimaker/testing"
   - "cura_binary_data/5.14.0-alpha.0@ultimaker/testing"

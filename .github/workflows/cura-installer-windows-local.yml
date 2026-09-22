@@ -103,6 +103,13 @@ jobs:
           conan export . --user=felix --channel=release
         working-directory: ./_cura_sources
 
+      - name: Export FELIX Cura Resources recipe
+        run: |
+          $pydir = type ../../pydir.txt
+          $env:PATH += ";$pydir;$pydir/Scripts"
+          conan export . --user=felix --channel=release
+        working-directory: ./_cura_sources/resources
+
       - name: Gather/build the packages
         run: |
           $pydir = type pydir.txt

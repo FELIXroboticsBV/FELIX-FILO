@@ -1006,6 +1006,11 @@ class CuraEngineBackend(QObject, Backend):
 
         global_stack = CuraApplication.getInstance().getMachineManager().activeMachine
 
+        # TODO: thsi will give me the name of the syringe variant which i can use assign propper volumes
+        #property string syringeVariantName: Cura.MachineManager.activeVariantNames["0"] !== undefined
+    #? Cura.MachineManager.activeVariantNames["0"]
+    #: ""
+
         is_food_printer =  global_stack.getMetaDataEntry("felix-printer-type", "plastic") == "food"
         ## if ther ammout of fillamaet exeets the ammount which can be held by the food printer`s syringe
         if material_amount_ml > max_syringe_volume and is_food_printer:

@@ -15,6 +15,10 @@ Item
 
     property var fileProviderModel: CuraApplication.getFileProviderModel()
 
+    property bool isFoodPrinter: Cura.MachineManager.activeMachine !== null
+        && Cura.MachineManager.activeMachine.metaDataEntry("felix-printer-type", "plastic") === "food"
+
+
     UM.I18nCatalog
     {
         id: catalog

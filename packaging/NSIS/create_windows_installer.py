@@ -58,7 +58,7 @@ def generate_nsi(source_path: str, dist_path: str, filename: str, version: str):
 
 
     nsis_content = template.render(
-        app_name = f"FELIXFILO {version}",
+        app_name = f"FELIX-Filo - {version}",
         main_app = "FELIX-Filo.exe",
         version = version,
         version_major = str(parsed_version.major),

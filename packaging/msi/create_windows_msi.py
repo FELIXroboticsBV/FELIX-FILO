@@ -47,19 +47,19 @@ def generate_wxs(source_path: Path, dist_path: Path, filename: Path, app_name: s
         template = Template(f.read())
 
     wxs_content = template.render(
-        app_name=f"{app_name}",
+        app_name = f"FELIX-Filo - {version}",
         main_app="FELIX-Filo.exe",
         version=version,
         version_major=str(parsed_version.major),
         version_minor=str(parsed_version.minor),
         version_patch=str(parsed_version.patch),
-        company="UltiMaker",
+        company="FELIX Printers",
         year=datetime.now().year,
         upgrade_code=str(uuid.uuid5(uuid.NAMESPACE_DNS, app_name)),
         cura_license_file=str(source_loc.joinpath("packaging", "msi", "cura_license.rtf")),
         cura_banner_top=str(source_loc.joinpath("packaging", "msi", "banner_top.bmp")),
         cura_banner_side=str(source_loc.joinpath("packaging", "msi", "banner_side.bmp")),
-        cura_icon=str(source_loc.joinpath("packaging", "icons", "Cura.ico")),
+        cura_icon=str(source_loc.joinpath("packaging", "icons", "felix-filo-icon.ico")),
         file_associations=file_associations,
     )
 
@@ -126,7 +126,7 @@ def build(dist_path: Path, filename: Path):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Create Windows msi installer of Cura.")
+    parser = argparse.ArgumentParser(description="Create Windows msi installer of FELIX Filo.")
     parser.add_argument("--source_path", type=Path, help="Path to Conan install Cura folder.")
     parser.add_argument("--dist_path", type=Path, help="Path to Pyinstaller dist folder")
     parser.add_argument("--filename", type=Path,

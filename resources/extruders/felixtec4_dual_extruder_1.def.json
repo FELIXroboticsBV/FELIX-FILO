@@ -4,7 +4,7 @@
     "inherits": "fdmextruder",
     "metadata":
     {
-        "machine": "felixtec4dual",
+        "machine": "felixtec4",
         "position": "1"
     },
     "overrides":

@@ -1001,21 +1001,27 @@ class CuraEngineBackend(QObject, Backend):
             warning_message.actionTriggered.connect(self._onMessageActionTriggered)
             warning_message.show()
 
-        max_syringe_volume = 70 # 70ml from (https://felixfood.nl/stainless-steel-syringe-premium-printers.html)
+
+
         material_amount_ml  = material_amounts[0] / 1000.0 # convert from mm3 to the ml
 
-        global_stack = CuraApplication.getInstance().getMachineManager().activeMachine
+        max_syringe_volume = 70
 
-        # TODO: thsi will give me the name of the syringe variant which i can use assign propper volumes
-        #property string syringeVariantName: Cura.MachineManager.activeVariantNames["0"] !== undefined
-    #? Cura.MachineManager.activeVariantNames["0"]
-    #: ""
+        global_stack = CuraApplication.getInstance().getMachineManager().activeMachine
+        if global_stack and global_stack.extruderList:
+            extruder = global_stack.extruderList[0]
+
+            nozzle_id = extruder.getProperty("machine_nozzle_id", "value") or ""
+            ## checks if the selected nozzle is plastic, if it is it will set appropriate volume for it
+            if "plastic" in nozzle_id.lower() :
+                max_syringe_volume = 100
 
         is_food_printer =  global_stack.getMetaDataEntry("felix-printer-type", "plastic") == "food"
         ## if ther ammout of fillamaet exeets the ammount which can be held by the food printer`s syringe
         if material_amount_ml > max_syringe_volume and is_food_printer:
             warning_message = Message(
                 text=catalog.i18nc(
+
                     "@message",
                     "<html>Not enough room in the syringe to fully print this model. "
                     "This model needs {model_amount:.1f} mL, but the syringe only holds {syringe_amount:.1f} mL. "

@@ -232,7 +232,8 @@ Item
     Action
     {
         id: marketplaceMaterialsAction
-        text: catalog.i18nc("@action:inmenu Marketplace is a brand name of UltiMaker's, so don't translate.", "Add more materials from Marketplace")
+
+        //text: catalog.i18nc("@action:inmenu Marketplace is a brand name of UltiMaker's, so don't translate.", "Add more materials from Marketplace")
     }
 
     Action

@@ -252,12 +252,12 @@ class DFFileExportAndUploadManager:
 
     def _onRequestUploadCuraProjectFileFailed(self, reply: "QNetworkReply", network_error: "QNetworkReply.NetworkError") -> None:
         """
-        Displays an appropriate message when the request to upload the Cura project file (.3mf) to the Digital Library fails.
+        Displays an appropriate message when the request to upload the FELIX Filo Project file (.3mf) to the Digital Library fails.
         This means that something went wrong with the initial request to create a "file" entry in the digital library.
         """
         reply_string = bytes(reply.readAll()).decode()
         filename_3mf = self._file_name + ".3mf"
-        Logger.log("d", "An error occurred while uploading the Cura project file '{}' to the Digital Library project '{}': {}".format(filename_3mf, self._library_project_id, reply_string))
+        Logger.log("d", "An error occurred while uploading the FELIX Filo Project file '{}' to the Digital Library project '{}': {}".format(filename_3mf, self._library_project_id, reply_string))
         with self._message_lock:
             # Set the progress to 100% when the upload job fails, to avoid having the progress message stuck
             self._file_upload_job_metadata[filename_3mf]["upload_status"] = "failed"

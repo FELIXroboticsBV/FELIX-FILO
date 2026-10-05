@@ -93,10 +93,10 @@ class PackageModel(QObject):
         match package_type:
             case "material":
                 description = catalog.i18nc("@label:label Ultimaker Marketplace is a brand name, don't translate",
-                                            "The material package associated with the Cura project could not be found on the Ultimaker Marketplace. Use the partial material profile definition stored in the Cura project file at your own risk.")
+                                            "The material package associated with the FELIX Filo Project could not be found on the Ultimaker Marketplace. Use the partial material profile definition stored in the FELIX Filo Project file at your own risk.")
             case "plugin":
                 description = catalog.i18nc("@label:label Ultimaker Marketplace is a brand name, don't translate",
-                                            "The plugin associated with the Cura project could not be found on the Ultimaker Marketplace. As the plugin may be required to slice the project it might not be possible to correctly slice the file.")
+                                            "The plugin associated with the FELIX Filo Project could not be found on the Ultimaker Marketplace. As the plugin may be required to slice the project it might not be possible to correctly slice the file.")
 
         package_data = {
             "display_name": display_name,

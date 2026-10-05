@@ -436,7 +436,7 @@ Try it for yourself <a href="https://www.thingiverse.com/thing:6692375?utm_sourc
 
 * Bug fixes:
 - Fixed a bug that caused spiked objects to have missing layers, thanks to @thomasrahm
-- Updated the text in the Open Universal Cura Project (UCP) file to be more correct
+- Updated the text in the Open FELIX Filo Project  (UCP) file to be more correct
 - Fixed the interpolated values for fan speeds and improved the check for minimum layer time
 - Fix a bug where material_print_temp_prepend not being disabled
 - Reduced the chance that oozing in the first travel move will cause a scar on the bottom of the model by updating the Layer Start X and Y
@@ -481,7 +481,7 @@ For an overview of the new features in the UltiMaker Factor 4, please watch <a h
 
 * New features and improvements:
 - Introduced a way that you can open models from Thingiverse from your browser
-- Introduced Universal Cura Project files. They contain models and settings and can be shared with people who have different printers.
+- Introduced FELIX Filo Project  files. They contain models and settings and can be shared with people who have different printers.
 - Introduced settings that define the raft offset for top, middle and bottom raft layers
 - Introduced an analyzing tool in the cura engine to better track slicing crashes, and started fixing the biggest reports coming in.
 - New Primetower option; Sparse, next to the current Bucket, contributed by @wawanbreton
@@ -526,8 +526,8 @@ For an overview of the new features in the UltiMaker Factor 4, please watch <a h
 - Resolved some crashes when opening project files
 - Resolved the biggest crashes coming in via the analyzing tool in the cura engine
 - Added links to support pages for Method materials to help find the best material compatibility
-- Introduced several visual improvements for the loading Universal Cura Projects window
-- Universal Cura Projects will now be opened in the center of the buildplate
+- Introduced several visual improvements for the loading FELIX Filo Project s window
+- FELIX Filo Project s will now be opened in the center of the buildplate
 - The prime tower no longer primes extruders that are not being used
 - Fixed file association for stl, obj, 3mf, gcode, and ufp for MacOS
 - MacOS users can use the open menu multiple times in a row again

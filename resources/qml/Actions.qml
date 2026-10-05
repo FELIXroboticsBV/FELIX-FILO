@@ -561,7 +561,7 @@ Item
     Action
     {
         id: saveUCPAction
-        text: catalog.i18nc("@title:menu menubar:file Don't translate 'Universal Cura Project'", "&Save Universal Cura Project...")
+        text: catalog.i18nc("@title:menu menubar:file Don't translate 'FELIX Filo Project '", "&Save FELIX Filo Project ...")
         enabled: UM.WorkspaceFileHandler.enabled && CuraApplication.getPackageManager().allEnabledPackages.includes("3MFWriter")
         onTriggered: CuraApplication.exportUcp()
     }

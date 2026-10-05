@@ -26,4 +26,4 @@ The support density will never exceed the value specified by the [support line d
 
 With this setting, you can customise your support very far. If certain parts of your print are prone to sagging or need to be printed very accurately, you can locally increase the density there to support them better, without having to take a big hit in printing time or making it harder to pull the support off.  
 
-**This setting will not transfer well through Cura project files. The project file will store the path to the image as the setting value, but will not store the image. If the project file is opened on a different computer, the density image will likely not be restored.**
+**This setting will not transfer well through FELIX Filo Project files. The project file will store the path to the image as the setting value, but will not store the image. If the project file is opened on a different computer, the density image will likely not be restored.**

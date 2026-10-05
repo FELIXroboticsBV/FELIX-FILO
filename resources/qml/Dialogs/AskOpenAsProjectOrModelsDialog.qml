@@ -15,7 +15,7 @@ UM.Dialog
     id: base
 
     title: base.is_ucp
-        ? catalog.i18nc("@title:window Don't translate 'Universal Cura Project'", "Open Universal Cura Project (UCP) file")
+        ? catalog.i18nc("@title:window Don't translate 'FELIX Filo Project '", "Open FELIX Filo Project  (UCP) file")
         : catalog.i18nc("@title:window", "Open project file")
     width: UM.Theme.getSize("small_popup_dialog").width
     height: UM.Theme.getSize("small_popup_dialog").height
@@ -86,7 +86,7 @@ UM.Dialog
             width: parent.width
             text: base.is_ucp
                 ? catalog.i18nc("@text:window", "This is a Cura Universal project file. Would you like to open it as a Cura Universal Project or import the models from it?")
-                : catalog.i18nc("@text:window", "This is a Cura project file. Would you like to open it as a project or import the models from it?")
+                : catalog.i18nc("@text:window", "This is a FELIX Filo Project file. Would you like to open it as a project or import the models from it?")
             wrapMode: Text.WordWrap
         }
 

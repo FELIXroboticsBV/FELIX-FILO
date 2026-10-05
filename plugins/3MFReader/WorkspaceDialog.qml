@@ -14,7 +14,7 @@ UM.Dialog
     property var manager
 
     id: workspaceDialog
-    title: manager.isUcp? catalog.i18nc("@title:window Don't translate 'Universal Cura Project'", "Open Universal Cura Project (UCP)"): catalog.i18nc("@title:window", "Open Project")
+    title: manager.isUcp? catalog.i18nc("@title:window Don't translate 'FELIX Filo Project '", "Open FELIX Filo Project  (UCP)"): catalog.i18nc("@title:window", "Open Project")
 
     margin: UM.Theme.getSize("default_margin").width
     minimumWidth: UM.Theme.getSize("modal_window_minimum").width
@@ -41,7 +41,7 @@ UM.Dialog
                 UM.Label
                 {
                     id: titleLabel
-                    text: manager.isUcp? catalog.i18nc("@action:title Don't translate 'Universal Cura Project'", "Summary - Open Universal Cura Project (UCP)"): catalog.i18nc("@action:title", "Summary - Cura Project")
+                    text: manager.isUcp? catalog.i18nc("@action:title Don't translate 'FELIX Filo Project '", "Summary - Open FELIX Filo Project  (UCP)"): catalog.i18nc("@action:title", "Summary - FELIX Filo Project")
                     font: UM.Theme.getFont("large")
                 }
                 Cura.TertiaryButton

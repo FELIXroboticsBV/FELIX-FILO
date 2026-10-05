@@ -1,7 +1,7 @@
 """
 STK500v2 protocol implementation for programming AVR chips.
 The STK500v2 protocol is used by the ArduinoMega2560 and a few other Arduino platforms to load firmware.
-This is a python 3 conversion of the code created by David Braam for the Cura project.
+This is a python 3 conversion of the code created by David Braam for the FELIX Filo Project.
 """
 import struct
 import sys

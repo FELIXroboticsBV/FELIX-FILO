@@ -52,7 +52,7 @@ Item
         id: fileNameLabel
         anchors.top: projectSummaryCard.bottom
         anchors.topMargin: UM.Theme.getSize("default_margin").height
-        text: "Cura project name"
+        text: "FELIX Filo Project name"
         font: UM.Theme.getFont("medium")
     }
 
@@ -221,9 +221,9 @@ Item
         valueRole: "value"
 
         model: [
-            { text: catalog.i18nc("@option", "Save Cura project and .ufp print file"), key: "3mf_ufp", value: ["3mf", "ufp"] },
-            { text: catalog.i18nc("@option", "Save Cura project and .makerbot print file"), key: "3mf_makerbot", value: ["3mf", "makerbot"] },
-            { text: catalog.i18nc("@option", "Save Cura project"), key: "3mf", value: ["3mf"] },
+            { text: catalog.i18nc("@option", "Save FELIX Filo Project and .ufp print file"), key: "3mf_ufp", value: ["3mf", "ufp"] },
+            { text: catalog.i18nc("@option", "Save FELIX Filo Project and .makerbot print file"), key: "3mf_makerbot", value: ["3mf", "makerbot"] },
+            { text: catalog.i18nc("@option", "Save FELIX Filo Project"), key: "3mf", value: ["3mf"] },
         ]
     }
 

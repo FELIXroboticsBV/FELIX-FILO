@@ -2,7 +2,7 @@
 Module to read intel hex files into binary data blobs.
 IntelHex files are commonly used to distribute firmware
 See: http://en.wikipedia.org/wiki/Intel_HEX
-This is a python 3 conversion of the code created by David Braam for the Cura project.
+This is a python 3 conversion of the code created by David Braam for the FELIX Filo Project.
 """
 import io
 from UM.Logger import Logger

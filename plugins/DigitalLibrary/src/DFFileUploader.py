@@ -84,7 +84,7 @@ class DFFileUploader:
         if self._finished:
             raise ValueError("The upload is already finished")
         if isinstance(self._df_file, DFLibraryFileUploadResponse):
-            Logger.log("i", "Uploading Cura project file '{file_name}' via link '{upload_url}'".format(file_name = self._df_file.file_name, upload_url = self._df_file.upload_url))
+            Logger.log("i", "Uploading FELIX Filo Project file '{file_name}' via link '{upload_url}'".format(file_name = self._df_file.file_name, upload_url = self._df_file.upload_url))
         elif isinstance(self._df_file, DFPrintJobUploadResponse):
             Logger.log("i", "Uploading Cura print file '{file_name}' via link '{upload_url}'".format(file_name = self._df_file.job_name, upload_url = self._df_file.upload_url))
         self._http.put(

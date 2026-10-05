@@ -116,8 +116,8 @@ msgctxt "@title:menu menubar:file"
 msgid "&Save Project..."
 msgstr "&Projekt speichern ..."
 
-msgctxt "@title:menu menubar:file Don't translate 'Universal Cura Project'"
-msgid "&Save Universal Cura Project..."
+msgctxt "@title:menu menubar:file Don't translate 'FELIX Filo Project '"
+msgid "&Save FELIX Filo Project ..."
 msgstr "&Speichern Universal Cura Projekt ..."
 
 msgctxt "@title:menu menubar:toplevel"
@@ -1113,7 +1113,7 @@ msgid "Cura Profile Writer"
 msgstr "Cura-Profil-Writer"
 
 msgctxt "@item:inlistbox"
-msgid "Cura Project 3MF file"
+msgid "FELIX Filo Project 3MF file"
 msgstr "Cura-Projekt 3MF-Datei"
 
 msgctxt "@backuplist:label"
@@ -1509,8 +1509,8 @@ msgctxt "@action:inmenu menubar:file"
 msgid "Export Selection..."
 msgstr "Auswahl exportieren..."
 
-msgctxt "@title:window Don't translate 'Universal Cura Project'"
-msgid "Export Universal Cura Project"
+msgctxt "@title:window Don't translate 'FELIX Filo Project '"
+msgid "Export FELIX Filo Project "
 msgstr "Universal Cura Projekt exportieren"
 
 msgctxt "@button"
@@ -2828,12 +2828,12 @@ msgctxt "@info:title"
 msgid "Open Project File"
 msgstr "Projektdatei öffnen"
 
-msgctxt "@title:window Don't translate 'Universal Cura Project'"
-msgid "Open Universal Cura Project (UCP)"
+msgctxt "@title:window Don't translate 'FELIX Filo Project '"
+msgid "Open FELIX Filo Project  (UCP)"
 msgstr "Universal Cura Projekt (UCP) öffnen"
 
-msgctxt "@title:window Don't translate 'Universal Cura Project'"
-msgid "Open Universal Cura Project (UCP) file"
+msgctxt "@title:window Don't translate 'FELIX Filo Project '"
+msgid "Open FELIX Filo Project  (UCP) file"
 msgstr "Universal Cura Projekt (UCP)-Datei öffnen"
 
 msgctxt "@action:label"
@@ -3698,15 +3698,15 @@ msgid "Save"
 msgstr "Speichern"
 
 msgctxt "@option"
-msgid "Save Cura project"
+msgid "Save FELIX Filo Project"
 msgstr "Cura-Projekt speichern"
 
 msgctxt "@option"
-msgid "Save Cura project and .makerbot print file"
+msgid "Save FELIX Filo Project and .makerbot print file"
 msgstr "Cura Projekt und .makerbot Druckdatei speichern"
 
 msgctxt "@option"
-msgid "Save Cura project and .ufp print file"
+msgid "Save FELIX Filo Project and .ufp print file"
 msgstr "Cura Projekt und .ufp Druckdatei speichern"
 
 msgctxt "@title:window"
@@ -4248,15 +4248,15 @@ msgid "Suggested Profile settings"
 msgstr "Empfohlene Profileinstellungen"
 
 msgctxt "@action:title"
-msgid "Summary - Cura Project"
+msgid "Summary - FELIX Filo Project"
 msgstr "Zusammenfassung – Cura-Projekt"
 
-msgctxt "@action:title Don't translate 'Universal Cura Project'"
-msgid "Summary - Open Universal Cura Project (UCP)"
+msgctxt "@action:title Don't translate 'FELIX Filo Project '"
+msgid "Summary - Open FELIX Filo Project  (UCP)"
 msgstr "Zusammenfassung – Universal Cura Projekt (UCP) öffnen"
 
-msgctxt "@action:title Don't translate 'Universal Cura Project'"
-msgid "Summary - Universal Cura Project"
+msgctxt "@action:title Don't translate 'FELIX Filo Project '"
+msgid "Summary - FELIX Filo Project "
 msgstr "Zusammenfassung – Universal Cura Projekt"
 
 msgctxt "@label"
@@ -4488,7 +4488,7 @@ msgid "The material in this extruder."
 msgstr "Das Material in diesem Extruder."
 
 msgctxt "@label:label Ultimaker Marketplace is a brand name, don't translate"
-msgid "The material package associated with the Cura project could not be found on the Ultimaker Marketplace. Use the partial material profile definition stored in the Cura project file at your own risk."
+msgid "The material package associated with the FELIX Filo Project could not be found on the Ultimaker Marketplace. Use the partial material profile definition stored in the FELIX Filo Project file at your own risk."
 msgstr "Das mit dem Cura-Projekt verbundene Materialpaket konnte nicht auf dem UltiMaker Marketplace gefunden werden. Die Verwendung der in der Cura-Projektdatei gespeicherten Definition des Teilmaterialprofils erfolgt auf eigene Gefahr."
 
 msgctxt "@info:tooltip"
@@ -4508,7 +4508,7 @@ msgid "The percentage of light penetrating a print with a thickness of 1 millime
 msgstr "Der Prozentsatz an Licht, der einen Druck von einer Dicke mit 1 Millimeter durchdringt. Senkt man diesen Wert, steigt der Kontrast in den dunkleren Bereichen, während der Kontrast in den helleren Bereichen des Bilds sinkt."
 
 msgctxt "@label:label Ultimaker Marketplace is a brand name, don't translate"
-msgid "The plugin associated with the Cura project could not be found on the Ultimaker Marketplace. As the plugin may be required to slice the project it might not be possible to correctly slice the file."
+msgid "The plugin associated with the FELIX Filo Project could not be found on the Ultimaker Marketplace. As the plugin may be required to slice the project it might not be possible to correctly slice the file."
 msgstr "Das mit dem Cura-Projekt verbundene Plug-in wurde im Ultimaker Marketplace nicht gefunden. Da das Plug-in möglicherweise erforderlich ist, um das Projekt zu slicen, ist es ein korrektes Slicing der Datei derzeit nicht möglich."
 
 msgctxt "@info:title"
@@ -4620,11 +4620,11 @@ msgid "This configuration is not available because %1 is not recognized. Please 
 msgstr "Diese Konfigurationen sind nicht verfügbar, weil %1 nicht erkannt wird. Besuchen Sie bitte %2 für das Herunterladen des korrekten Materialprofils."
 
 msgctxt "@text:window"
-msgid "This is a Cura Universal project file. Would you like to open it as a Cura project or Cura Universal Project or import the models from it?"
+msgid "This is a Cura Universal project file. Would you like to open it as a FELIX Filo Project or Cura Universal Project or import the models from it?"
 msgstr "Dies ist eine Cura Universal Projektdatei. Möchten Sie es als Cura Projekt oder Cura Universal Project öffnen oder die Modelle daraus importieren?"
 
 msgctxt "@text:window"
-msgid "This is a Cura project file. Would you like to open it as a project or import the models from it?"
+msgid "This is a FELIX Filo Project file. Would you like to open it as a project or import the models from it?"
 msgstr "Dies ist eine Cura-Projektdatei. Möchten Sie diese als Projekt öffnen oder die Modelle hieraus importieren?"
 
 msgctxt "@label"
@@ -4701,12 +4701,12 @@ msgctxt "@label"
 msgid "This setting is resolved from conflicting extruder-specific values:"
 msgstr "Diese Einstellung wird durch gegensätzliche, extruderspezifische Werte gelöst:"
 
-msgctxt "@tooltip Don't translate 'Universal Cura Project'"
-msgid "This setting may not perform well while exporting to Universal Cura Project, Users are asked to add it at their own risk."
+msgctxt "@tooltip Don't translate 'FELIX Filo Project '"
+msgid "This setting may not perform well while exporting to FELIX Filo Project , Users are asked to add it at their own risk."
 msgstr "Diese Einstellung funktioniert möglicherweise beim Export in ein Universal Cura Projekt nicht einwandfrei. Die Benutzer werden gebeten, sie auf eigenes Risiko hinzuzufügen."
 
-msgctxt "@tooltip Don't translate 'Universal Cura Project'"
-msgid "This setting may not perform well while exporting to Universal Cura Project. Users are asked to add it at their own risk."
+msgctxt "@tooltip Don't translate 'FELIX Filo Project '"
+msgid "This setting may not perform well while exporting to FELIX Filo Project . Users are asked to add it at their own risk."
 msgstr "Diese Einstellung funktioniert beim Export in ein Universal Cura Projekt möglicherweise nicht einwandfrei. Die Benutzer werden gebeten, sie auf eigenes Risiko hinzuzufügen."
 
 msgctxt "@info:warning"
@@ -4955,11 +4955,11 @@ msgid "Unit"
 msgstr "Einheit"
 
 msgctxt "@item:inlistbox"
-msgid "Universal Cura Project"
+msgid "FELIX Filo Project "
 msgstr "Universal Cura Projekt"
 
-msgctxt "@action:description Don't translate 'Universal Cura Project'"
-msgid "Universal Cura Project files can be printed on different 3D printers while retaining positional data and selected settings. When exported, all models present on the build plate will be included along with their current position, orientation, and scale. You can also select which per-extruder or per-model settings should be included to ensure proper printing."
+msgctxt "@action:description Don't translate 'FELIX Filo Project '"
+msgid "FELIX Filo Project  files can be printed on different 3D printers while retaining positional data and selected settings. When exported, all models present on the build plate will be included along with their current position, orientation, and scale. You can also select which per-extruder or per-model settings should be included to ensure proper printing."
 msgstr "Universal Cura Projekt-Dateien können auf verschiedenen 3D-Druckern gedruckt werden, wobei die Positionsdaten und ausgewählten Einstellungen erhalten bleiben. Beim Export werden alle Modelle, die sich auf der Bauplatte befinden, mit ihrer aktuellen Position, Ausrichtung und ihrem Maßstab einbezogen. Sie können auch auswählen, welche Einstellungen pro Extruder oder pro Modell enthalten sein sollen, um einen korrekten Druck zu gewährleisten."
 
 msgctxt "@label Description for development tool"

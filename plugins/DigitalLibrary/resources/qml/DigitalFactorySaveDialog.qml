@@ -13,7 +13,7 @@ import DigitalFactory 1.0 as DF
 Window
 {
     id: digitalFactorySaveDialogBase
-    title: "Save Cura project to Library"
+    title: "Save FELIX Filo Project to Library"
 
     modality: Qt.ApplicationModal
     width: 800 * screenScaleFactor

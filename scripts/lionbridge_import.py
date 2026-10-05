@@ -192,7 +192,7 @@ def find_translation(source: str, msgctxt: str, msgid: str) -> str:
 if __name__ == "__main__":
     print("""Usage instructions:
 
-1. In Smartling, in the Cura project go to the "Files" tab.
+1. In Smartling, in the FELIX Filo Project go to the "Files" tab.
 2. Select all four .pot files.
 3. In the expando above the file list, choose "Download Selected".
 4. In the pop-up, select:

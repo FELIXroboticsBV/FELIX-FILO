@@ -25,4 +25,4 @@ The infill density will never exceed the value specified by the [infill line dis
 
 With this setting, you can customise your infill very far. Since the Cross Infill patterns have most of their use with flexible materials, this setting is used to achieve very specific softness or hardness constraints. For instance, one could print a shoe sole with customised softness to fit the feet better, or a machanical device that has to bend in specific parts. 
 
-**This setting will not transfer well through Cura project files. The project file will store the path to the image as the setting value, but will not store the image. If the project file is opened on a different computer, the density image will likely not be restored.**
+**This setting will not transfer well through FELIX Filo Project files. The project file will store the path to the image as the setting value, but will not store the image. If the project file is opened on a different computer, the density image will likely not be restored.**

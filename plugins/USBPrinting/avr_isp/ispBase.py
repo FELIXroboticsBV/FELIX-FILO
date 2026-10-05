@@ -4,7 +4,7 @@ The ISP AVR programmer can load firmware into AVR chips. Which are commonly used
 
  Needs to be subclassed to support different programmers.
  Currently only the stk500v2 subclass exists.
- This is a python 3 conversion of the code created by David Braam for the Cura project.
+ This is a python 3 conversion of the code created by David Braam for the FELIX Filo Project.
 """
 
 from . import chipDB

@@ -4,7 +4,7 @@ import sys
 from pathlib import Path
 
 """
-Run this file with the Cura project root as the working directory
+Run this file with the FELIX Filo Project root as the working directory
 Checks for invalid imports. When importing from plugins, there will be no problems when running from source, 
 but for some build types the plugins dir is not on the path, so relative imports should be used instead. eg:
 from ..UltimakerCloudScope import UltimakerCloudScope  <-- OK

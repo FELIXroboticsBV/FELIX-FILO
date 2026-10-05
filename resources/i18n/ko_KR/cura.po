@@ -119,8 +119,8 @@ msgctxt "@title:menu menubar:file"
 msgid "&Save Project..."
 msgstr "프로젝트 저장(&S)..."
 
-msgctxt "@title:menu menubar:file Don't translate 'Universal Cura Project'"
-msgid "&Save Universal Cura Project..."
+msgctxt "@title:menu menubar:file Don't translate 'FELIX Filo Project '"
+msgid "&Save FELIX Filo Project ..."
 msgstr "&범용 Cura 프로젝트 저장..."
 
 msgctxt "@title:menu menubar:toplevel"
@@ -1183,7 +1183,7 @@ msgid "Cura Profile Writer"
 msgstr "Cura 프로파일 작성자"
 
 msgctxt "@item:inlistbox"
-msgid "Cura Project 3MF file"
+msgid "FELIX Filo Project 3MF file"
 msgstr "Cura 프로젝트 3MF 파일"
 
 msgctxt "@backuplist:label"
@@ -1584,8 +1584,8 @@ msgctxt "@action:inmenu menubar:file"
 msgid "Export Selection..."
 msgstr "내보내기 선택..."
 
-msgctxt "@title:window Don't translate 'Universal Cura Project'"
-msgid "Export Universal Cura Project"
+msgctxt "@title:window Don't translate 'FELIX Filo Project '"
+msgid "Export FELIX Filo Project "
 msgstr "범용 Cura 프로젝트 내보내기"
 
 msgctxt "@button"
@@ -2909,12 +2909,12 @@ msgctxt "@info:title"
 msgid "Open Project File"
 msgstr "프로젝트 파일 열기"
 
-msgctxt "@title:window Don't translate 'Universal Cura Project'"
-msgid "Open Universal Cura Project (UCP)"
+msgctxt "@title:window Don't translate 'FELIX Filo Project '"
+msgid "Open FELIX Filo Project  (UCP)"
 msgstr "범용 Cura 프로젝트(UCP) 열기"
 
-msgctxt "@title:window Don't translate 'Universal Cura Project'"
-msgid "Open Universal Cura Project (UCP) file"
+msgctxt "@title:window Don't translate 'FELIX Filo Project '"
+msgid "Open FELIX Filo Project  (UCP) file"
 msgstr "범용 Cura 프로젝트(UCP) 파일 열기"
 
 msgctxt "@action:label"
@@ -3822,15 +3822,15 @@ msgid "Save"
 msgstr "저장"
 
 msgctxt "@option"
-msgid "Save Cura project"
+msgid "Save FELIX Filo Project"
 msgstr "Cura 프로젝트 저장하기"
 
 msgctxt "@option"
-msgid "Save Cura project and .makerbot print file"
+msgid "Save FELIX Filo Project and .makerbot print file"
 msgstr "Cura 프로젝트 및 .makerbot 출력 파일 저장"
 
 msgctxt "@option"
-msgid "Save Cura project and .ufp print file"
+msgid "Save FELIX Filo Project and .ufp print file"
 msgstr "Cura 프로젝트 및 .ufp 출력 파일 저장"
 
 msgctxt "@title:window"
@@ -4392,15 +4392,15 @@ msgid "Suggested Profile settings"
 msgstr "추천 프로필 설정"
 
 msgctxt "@action:title"
-msgid "Summary - Cura Project"
+msgid "Summary - FELIX Filo Project"
 msgstr "요약 - Cura 프로젝트"
 
-msgctxt "@action:title Don't translate 'Universal Cura Project'"
-msgid "Summary - Open Universal Cura Project (UCP)"
+msgctxt "@action:title Don't translate 'FELIX Filo Project '"
+msgid "Summary - Open FELIX Filo Project  (UCP)"
 msgstr "요약 - 범용 Cura 프로젝트(UCP) 열기"
 
-msgctxt "@action:title Don't translate 'Universal Cura Project'"
-msgid "Summary - Universal Cura Project"
+msgctxt "@action:title Don't translate 'FELIX Filo Project '"
+msgid "Summary - FELIX Filo Project "
 msgstr "요약 - 범용 Cura 프로젝트"
 
 msgctxt "@action:button"
@@ -4606,7 +4606,7 @@ msgid "The material in this extruder."
 msgstr "이 익스트루더의 재료."
 
 msgctxt "@label:label Ultimaker Marketplace is a brand name, don't translate"
-msgid "The material package associated with the Cura project could not be found on the Ultimaker Marketplace. Use the partial material profile definition stored in the Cura project file at your own risk."
+msgid "The material package associated with the FELIX Filo Project could not be found on the Ultimaker Marketplace. Use the partial material profile definition stored in the FELIX Filo Project file at your own risk."
 msgstr "Ultimaker Marketplace에서 Cura 프로젝트와 관련된 재료 패키지를 찾을 수 없습니다. Cura 프로젝트 파일에 저장된 부분적인 재료 프로필 정의를 사용할 시 이로 인한 문제는 사용자 책임입니다."
 
 msgctxt "@info:tooltip"
@@ -4626,7 +4626,7 @@ msgid "The percentage of light penetrating a print with a thickness of 1 millime
 msgstr "두께가 1mm인 출력물을 관통하는 빛의 비율 이 값을 낮추면 어두운 부분의 대조가 증가하고 이미지의 밝은 부분의 대조가 감소합니다."
 
 msgctxt "@label:label Ultimaker Marketplace is a brand name, don't translate"
-msgid "The plugin associated with the Cura project could not be found on the Ultimaker Marketplace. As the plugin may be required to slice the project it might not be possible to correctly slice the file."
+msgid "The plugin associated with the FELIX Filo Project could not be found on the Ultimaker Marketplace. As the plugin may be required to slice the project it might not be possible to correctly slice the file."
 msgstr "Cura 프로젝트와 관련된 플러그인을 Ultimaker 마켓플레이스에서 찾을 수 없습니다. 프로젝트를 슬라이스하는 데 플러그인이 필요할 수 있으므로 파일을 올바르게 슬라이스하지 못할 수 있습니다."
 
 msgctxt "@info:title"
@@ -4754,7 +4754,7 @@ msgid "This is a Cura Universal project file. Would you like to open it as a Cur
 msgstr "이 항목은 Cura Universal 프로젝트 파일입니다. 해당 파일을 Cura Universal 프로젝트로 열거나, 파일에서 모델을 불러올까요?"
 
 msgctxt "@text:window"
-msgid "This is a Cura project file. Would you like to open it as a project or import the models from it?"
+msgid "This is a FELIX Filo Project file. Would you like to open it as a project or import the models from it?"
 msgstr "이 파일은 Cura 프로젝트 파일입니다. 프로젝트로 열거나 모델을 가져 오시겠습니까?"
 
 msgctxt "@label"
@@ -4837,12 +4837,12 @@ msgctxt "@label"
 msgid "This setting is resolved from conflicting extruder-specific values:"
 msgstr "이 설정은 충돌하는 압출기별 값으로 결정됩니다:"
 
-msgctxt "@tooltip Don't translate 'Universal Cura Project'"
-msgid "This setting may not perform well while exporting to Universal Cura Project, Users are asked to add it at their own risk."
+msgctxt "@tooltip Don't translate 'FELIX Filo Project '"
+msgid "This setting may not perform well while exporting to FELIX Filo Project , Users are asked to add it at their own risk."
 msgstr "이 설정은 범용 Cura 프로젝트로 내보내는 동안 제대로 작동하지 않을 수 있으며, 사용자 책임하에 추가해야 합니다."
 
-msgctxt "@tooltip Don't translate 'Universal Cura Project'"
-msgid "This setting may not perform well while exporting to Universal Cura Project. Users are asked to add it at their own risk."
+msgctxt "@tooltip Don't translate 'FELIX Filo Project '"
+msgid "This setting may not perform well while exporting to FELIX Filo Project . Users are asked to add it at their own risk."
 msgstr "이 설정은 범용 Cura 프로젝트로 내보내는 동안 제대로 작동하지 않을 수 있으며, 사용자 책임하에 추가해야 합니다."
 
 msgctxt "@info:warning"
@@ -5100,11 +5100,11 @@ msgid "Unit"
 msgstr "단위"
 
 msgctxt "@item:inlistbox"
-msgid "Universal Cura Project"
+msgid "FELIX Filo Project "
 msgstr "범용 Cura 프로젝트"
 
-msgctxt "@action:description Don't translate 'Universal Cura Project'"
-msgid "Universal Cura Project files can be printed on different 3D printers while retaining positional data and selected settings. When exported, all models present on the build plate will be included along with their current position, orientation, and scale. You can also select which per-extruder or per-model settings should be included to ensure proper printing."
+msgctxt "@action:description Don't translate 'FELIX Filo Project '"
+msgid "FELIX Filo Project  files can be printed on different 3D printers while retaining positional data and selected settings. When exported, all models present on the build plate will be included along with their current position, orientation, and scale. You can also select which per-extruder or per-model settings should be included to ensure proper printing."
 msgstr "범용 Cura 프로젝트 파일은 위치 데이터 및 선택된 설정을 유지한 채 여러 3D 프린터에서 출력할 수 있습니다. 파일을 내보낼 때 빌드 플레이트의 모든 모델이 현재 위치, 방향, 크기와 함께 포함됩니다. 적절한 출력을 위해 포함할 압출기별 또는 모델별 설정을 선택할 수도 있습니다."
 
 msgctxt "@label"
@@ -5950,7 +5950,7 @@ msgstr "{}개의 플러그인을 다운로드하지 못했습니다"
 #~ msgstr "테마*:"
 
 #~ msgctxt "@text:window"
-#~ msgid "This is a Cura Universal project file. Would you like to open it as a Cura project or Cura Universal Project or import the models from it?"
+#~ msgid "This is a Cura Universal project file. Would you like to open it as a FELIX Filo Project or Cura Universal Project or import the models from it?"
 #~ msgstr "Cura 범용 프로젝트 파일입니다. Cura 프로젝트 또는 Cura 범용 프로젝트로 열거나 파일에서 모델을 가져오시겠습니까?"
 
 #~ msgctxt "@info:status"

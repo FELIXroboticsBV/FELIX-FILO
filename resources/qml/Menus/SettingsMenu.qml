@@ -12,6 +12,13 @@ Cura.Menu
     id: base
     title: catalog.i18nc("@title:menu menubar:toplevel", "&Settings")
 
+    Cura.MenuSeparator { }
+
+
+    Cura.MenuItem { action: Cura.Actions.openSettings }
+
+    Cura.MenuSeparator { }
+
     PrinterMenu { }
 
     property var activeMachine: Cura.MachineManager.activeMachine
@@ -74,7 +81,5 @@ Cura.Menu
         onObjectRemoved: function(index, object) { base.removeMenu(object); }
     }
 
-    Cura.MenuSeparator { }
 
-    Cura.MenuItem { action: Cura.Actions.configureSettingVisibility }
 }

@@ -11,41 +11,6 @@ Cura.Menu
 {
     id: menu
     title: catalog.i18nc("@title:menu menubar:settings", "&Printer")
-    Cura.MenuItem
-    {
-        id: networkEnabledPrinterItem
-        text: catalog.i18nc("@label:category menu label", "Network enabled printers")
-        enabled: false
-        visible: networKPrinterInstantiator.count > 0
-    }
-
-    Instantiator
-    {
-        id: networKPrinterInstantiator
-        model: Cura.GlobalStacksModel {filterOnlineOnly: true }
-        Cura.MenuItem
-        {
-            property string connectGroupName:
-            {
-                if("group_name" in model.metadata)
-                {
-                    return model.metadata["group_name"]
-                }
-                return ""
-            }
-            text: connectGroupName
-            checkable: true
-            checked: Cura.MachineManager.activeMachineNetworkGroupName == connectGroupName
-            onTriggered: Cura.MachineManager.setActiveMachine(model.id)
-        }
-        onObjectAdded: function(index, object) {
-            menu.insertItem(2, object);
-            if (Qt.platform.os == "osx") object.text += " ";
-        }
-        onObjectRemoved: function(index, object) { menu.removeItem(object); }
-    }
-
-    Cura.MenuSeparator { visible: networKPrinterInstantiator.count > 0 }
 
     Cura.MenuItem
     {

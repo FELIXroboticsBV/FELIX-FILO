@@ -85,6 +85,8 @@ Item
     property alias exportProjectForSupport: exportProjectForSupportAction
     property alias showFileLocation: showFileLocationAction
 
+    property alias openSettings: openGeneralSettingsAction
+
     readonly property bool copy_paste_enabled: {
         const all_enabled_packages = CuraApplication.getPackageManager().allEnabledPackages;
         return all_enabled_packages.includes("3MFReader") && all_enabled_packages.includes("3MFWriter");
@@ -97,6 +99,13 @@ Item
         id: openSponsershipPageAction
         onTriggered: Qt.openUrlExternally("https://github.com/sponsors/Ultimaker")
         text: catalog.i18nc("@action:inmenu", "Sponsor Cura")
+    }
+
+    Action
+    {
+        id: openGeneralSettingsAction
+        onTriggered: preferencesAction.trigger()
+        text: catalog.i18nc("@action:inmenu", "Open settings")
     }
 
     Action

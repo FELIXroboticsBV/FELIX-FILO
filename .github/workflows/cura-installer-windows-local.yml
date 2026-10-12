@@ -96,6 +96,20 @@ jobs:
           Get-ChildItem -Path . -Recurse -Depth 4 -Filter "*.spec"
           Select-String -Path "FELIX-Filo\UltiMaker-Cura.spec" -Pattern "name=r"
 
+      - name: Checkout FELIX materials
+        uses: actions/checkout@v4
+        with:
+          repository: FELIXroboticsBV/fdm_materials
+          ref: main
+          path: _fdm_materials
+
+      - name: Export FELIX materials recipe
+        run: |
+          $pydir = type ../pydir.txt
+          $env:PATH += ";$pydir;$pydir/Scripts"
+          conan export . --version=5.14.0-alpha.0 --user=felix --channel=release
+        working-directory: ./_fdm_materials
+
       - name: Export local FELIX Cura recipe
         run: |
           $pydir = type ../pydir.txt
@@ -103,7 +117,7 @@ jobs:
           conan export . --user=felix --channel=release
         working-directory: ./_cura_sources
 
-      - name: Export FELIX Cura Resources recipe
+      - name: Export FELIX Filo Resources recipe
         run: |
           $pydir = type ../../pydir.txt
           $env:PATH += ";$pydir;$pydir/Scripts"

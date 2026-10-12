@@ -5,7 +5,7 @@ requirements:
   - "uranium/5.14.0-alpha.0@ultimaker/testing"
   - "curaengine/5.14.0-alpha.0@ultimaker/testing"
   - "cura_binary_data/5.14.0-alpha.0@ultimaker/testing"
-  - "fdm_materials/5.14.0-alpha.0@ultimaker/testing"
+  - "fdm_materials/5.14.0-alpha.0@felix/release"
   - "dulcificum/5.11.0-alpha.0"
   - "pysavitar/5.12.0"
   - "pynest2d/5.11.0-alpha.0"

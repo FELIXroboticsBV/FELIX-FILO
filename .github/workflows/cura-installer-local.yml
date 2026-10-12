@@ -110,6 +110,17 @@ jobs:
                   --passphrase "$GPG_PASSPHRASE" \
                   --import
 
+      - name: Checkout FELIX materials
+        uses: actions/checkout@v4
+        with:
+          repository: FELIXroboticsBV/fdm_materials
+          ref: main
+          path: _fdm_materials
+
+      - name: Export FELIX materials recipe
+        run: conan export . --version=5.14.0-alpha.0 --user=felix --channel=release
+        working-directory: ./_fdm_materials
+
       - name: Export local FELIX Cura recipe
         run: conan export . --user=felix --channel=release
         working-directory: ./_cura_sources
